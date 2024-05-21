@@ -1,0 +1,1856 @@
+{
+  "address": "485U8Ea7YoM6Nd5QR7AmZu34RBeMTG5P3iG5KAEcecTi",
+  "metadata": {
+    "name": "poe",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Proof of Estimate - Prediction Poll"
+  },
+  "instructions": [
+    {
+      "name": "collect_points",
+      "discriminator": [
+        221,
+        8,
+        237,
+        153,
+        212,
+        171,
+        156,
+        131
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "forecaster"
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "forecaster"
+              }
+            ]
+          }
+        },
+        {
+          "name": "poll",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  108,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll.id",
+                "account": "Poll"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_estimate",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  101,
+                  115,
+                  116,
+                  105,
+                  109,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              },
+              {
+                "kind": "account",
+                "path": "forecaster"
+              }
+            ]
+          }
+        },
+        {
+          "name": "scoring_list",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  99,
+                  111,
+                  114,
+                  105,
+                  110,
+                  103,
+                  95,
+                  108,
+                  105,
+                  115,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_score",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  115,
+                  99,
+                  111,
+                  114,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              },
+              {
+                "kind": "account",
+                "path": "forecaster"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  101,
+                  107,
+                  101,
+                  110,
+                  95,
+                  109,
+                  105,
+                  110,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "escrow_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "forecaster_token_account",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_poll",
+      "discriminator": [
+        182,
+        171,
+        112,
+        238,
+        6,
+        219,
+        14,
+        110
+      ],
+      "accounts": [
+        {
+          "name": "creator",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "resolver"
+        },
+        {
+          "name": "state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  101,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "poll",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  108,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "state.num_polls",
+                "account": "PoeState"
+              }
+            ]
+          }
+        },
+        {
+          "name": "scoring_list",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  99,
+                  111,
+                  114,
+                  105,
+                  110,
+                  103,
+                  95,
+                  108,
+                  105,
+                  115,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "question",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "category",
+          "type": "u16"
+        },
+        {
+          "name": "decay",
+          "type": "f32"
+        }
+      ]
+    },
+    {
+      "name": "initialize",
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  101,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  101,
+                  107,
+                  101,
+                  110,
+                  95,
+                  109,
+                  105,
+                  110,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "escrow_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "make_estimate",
+      "discriminator": [
+        169,
+        43,
+        178,
+        59,
+        233,
+        178,
+        74,
+        199
+      ],
+      "accounts": [
+        {
+          "name": "forecaster",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "forecaster"
+              }
+            ]
+          }
+        },
+        {
+          "name": "poll",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  108,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll.id",
+                "account": "Poll"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_estimate",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  101,
+                  115,
+                  116,
+                  105,
+                  109,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              },
+              {
+                "kind": "account",
+                "path": "forecaster"
+              }
+            ]
+          }
+        },
+        {
+          "name": "poll_estimate_update",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  108,
+                  108,
+                  95,
+                  101,
+                  115,
+                  116,
+                  105,
+                  109,
+                  97,
+                  116,
+                  101,
+                  95,
+                  117,
+                  112,
+                  100,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              },
+              {
+                "kind": "account",
+                "path": "poll.num_estimate_updates",
+                "account": "Poll"
+              }
+            ]
+          }
+        },
+        {
+          "name": "scoring_list",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  99,
+                  111,
+                  114,
+                  105,
+                  110,
+                  103,
+                  95,
+                  108,
+                  105,
+                  115,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_score",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  115,
+                  99,
+                  111,
+                  114,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              },
+              {
+                "kind": "account",
+                "path": "forecaster"
+              }
+            ]
+          }
+        },
+        {
+          "name": "forecaster_token_account",
+          "writable": true
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  101,
+                  107,
+                  101,
+                  110,
+                  95,
+                  109,
+                  105,
+                  110,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "escrow_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "lower_estimate",
+          "type": "u16"
+        },
+        {
+          "name": "upper_estimate",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "register_user",
+      "discriminator": [
+        2,
+        241,
+        150,
+        223,
+        99,
+        214,
+        116,
+        97
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "payer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  101,
+                  107,
+                  101,
+                  110,
+                  95,
+                  109,
+                  105,
+                  110,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "remove_estimate",
+      "discriminator": [
+        123,
+        41,
+        255,
+        206,
+        43,
+        234,
+        150,
+        38
+      ],
+      "accounts": [
+        {
+          "name": "forecaster",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "forecaster"
+              }
+            ]
+          }
+        },
+        {
+          "name": "poll",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  108,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll.id",
+                "account": "Poll"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_estimate",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  101,
+                  115,
+                  116,
+                  105,
+                  109,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              },
+              {
+                "kind": "account",
+                "path": "forecaster"
+              }
+            ]
+          }
+        },
+        {
+          "name": "estimate_update",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  108,
+                  108,
+                  95,
+                  101,
+                  115,
+                  116,
+                  105,
+                  109,
+                  97,
+                  116,
+                  101,
+                  95,
+                  117,
+                  112,
+                  100,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              },
+              {
+                "kind": "account",
+                "path": "poll.num_estimate_updates",
+                "account": "Poll"
+              }
+            ]
+          }
+        },
+        {
+          "name": "scoring_list",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  99,
+                  111,
+                  114,
+                  105,
+                  110,
+                  103,
+                  95,
+                  108,
+                  105,
+                  115,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_score",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  115,
+                  99,
+                  111,
+                  114,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              },
+              {
+                "kind": "account",
+                "path": "forecaster"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "resolve_poll",
+      "discriminator": [
+        130,
+        62,
+        235,
+        12,
+        76,
+        239,
+        17,
+        61
+      ],
+      "accounts": [
+        {
+          "name": "resolver",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "poll"
+          ]
+        },
+        {
+          "name": "poll",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  108,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll.id",
+                "account": "Poll"
+              }
+            ]
+          }
+        },
+        {
+          "name": "scoring_list",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  99,
+                  111,
+                  114,
+                  105,
+                  110,
+                  103,
+                  95,
+                  108,
+                  105,
+                  115,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "result",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "update_estimate",
+      "discriminator": [
+        16,
+        66,
+        42,
+        145,
+        179,
+        218,
+        133,
+        181
+      ],
+      "accounts": [
+        {
+          "name": "forecaster",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "poll",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  108,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll.id",
+                "account": "Poll"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_estimate",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  101,
+                  115,
+                  116,
+                  105,
+                  109,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              },
+              {
+                "kind": "account",
+                "path": "forecaster"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_estimate_update",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  101,
+                  115,
+                  116,
+                  105,
+                  109,
+                  97,
+                  116,
+                  101,
+                  95,
+                  117,
+                  112,
+                  100,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              },
+              {
+                "kind": "account",
+                "path": "forecaster"
+              },
+              {
+                "kind": "account",
+                "path": "user_estimate.num_estimate_updates",
+                "account": "UserEstimate"
+              }
+            ]
+          }
+        },
+        {
+          "name": "estimate_update",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  108,
+                  108,
+                  95,
+                  101,
+                  115,
+                  116,
+                  105,
+                  109,
+                  97,
+                  116,
+                  101,
+                  95,
+                  117,
+                  112,
+                  100,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              },
+              {
+                "kind": "account",
+                "path": "poll.num_estimate_updates",
+                "account": "Poll"
+              }
+            ]
+          }
+        },
+        {
+          "name": "scoring_list",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  99,
+                  111,
+                  114,
+                  105,
+                  110,
+                  103,
+                  95,
+                  108,
+                  105,
+                  115,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_score",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  115,
+                  99,
+                  111,
+                  114,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              },
+              {
+                "kind": "account",
+                "path": "forecaster"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "new_lower_estimate",
+          "type": "u16"
+        },
+        {
+          "name": "new_upper_estimate",
+          "type": "u16"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "PoeState",
+      "discriminator": [
+        56,
+        89,
+        110,
+        49,
+        245,
+        252,
+        16,
+        20
+      ]
+    },
+    {
+      "name": "Poll",
+      "discriminator": [
+        110,
+        234,
+        167,
+        188,
+        231,
+        136,
+        153,
+        111
+      ]
+    },
+    {
+      "name": "PollEstimateUpdate",
+      "discriminator": [
+        140,
+        170,
+        34,
+        23,
+        150,
+        213,
+        62,
+        18
+      ]
+    },
+    {
+      "name": "ScoringList",
+      "discriminator": [
+        200,
+        108,
+        113,
+        50,
+        15,
+        45,
+        206,
+        81
+      ]
+    },
+    {
+      "name": "User",
+      "discriminator": [
+        159,
+        117,
+        95,
+        227,
+        239,
+        151,
+        58,
+        236
+      ]
+    },
+    {
+      "name": "UserEstimate",
+      "discriminator": [
+        4,
+        202,
+        200,
+        189,
+        121,
+        204,
+        147,
+        101
+      ]
+    },
+    {
+      "name": "UserEstimateUpdate",
+      "discriminator": [
+        231,
+        183,
+        179,
+        64,
+        195,
+        152,
+        147,
+        122
+      ]
+    },
+    {
+      "name": "UserScore",
+      "discriminator": [
+        212,
+        150,
+        123,
+        224,
+        34,
+        227,
+        84,
+        39
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "PollClosed",
+      "msg": "Poll is closed."
+    },
+    {
+      "code": 6001,
+      "name": "PollNotResolved",
+      "msg": "Poll has not been resolved."
+    },
+    {
+      "code": 6002,
+      "name": "PollAlreadyResolved",
+      "msg": "Poll has already been resolved."
+    }
+  ],
+  "types": [
+    {
+      "name": "PoeState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "num_polls",
+            "type": "u64"
+          },
+          {
+            "name": "score",
+            "type": "f32"
+          },
+          {
+            "name": "recalibration_factor",
+            "type": "f32"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Poll",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "resolver",
+            "type": "pubkey"
+          },
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "category",
+            "type": "u16"
+          },
+          {
+            "name": "betting_amount",
+            "type": "u64"
+          },
+          {
+            "name": "start_slot",
+            "type": "u64"
+          },
+          {
+            "name": "end_slot",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "decay_rate",
+            "type": "f32"
+          },
+          {
+            "name": "collective_estimate",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "variance",
+            "type": {
+              "option": "f32"
+            }
+          },
+          {
+            "name": "ln_gm_a",
+            "type": {
+              "option": "f32"
+            }
+          },
+          {
+            "name": "ln_gm_b",
+            "type": {
+              "option": "f32"
+            }
+          },
+          {
+            "name": "num_forecasters",
+            "type": "u64"
+          },
+          {
+            "name": "num_estimate_updates",
+            "type": "u64"
+          },
+          {
+            "name": "accumulated_weights",
+            "type": "f32"
+          },
+          {
+            "name": "accumulated_weights_squared",
+            "type": "f32"
+          },
+          {
+            "name": "result",
+            "type": {
+              "option": "bool"
+            }
+          },
+          {
+            "name": "question",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PollEstimateUpdate",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "poll",
+            "type": "pubkey"
+          },
+          {
+            "name": "slot",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "estimate",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "variance",
+            "type": {
+              "option": "f32"
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ScoringList",
+      "serialization": "bytemuck",
+      "repr": {
+        "kind": "c"
+      },
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "options",
+            "type": {
+              "array": [
+                "f32",
+                128
+              ]
+            }
+          },
+          {
+            "name": "cost",
+            "type": {
+              "array": [
+                "f32",
+                128
+              ]
+            }
+          },
+          {
+            "name": "peer_score_a",
+            "type": {
+              "array": [
+                "f32",
+                128
+              ]
+            }
+          },
+          {
+            "name": "peer_score_b",
+            "type": {
+              "array": [
+                "f32",
+                128
+              ]
+            }
+          },
+          {
+            "name": "last_slot",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "User",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "score",
+            "type": "f32"
+          },
+          {
+            "name": "participation_count",
+            "type": "u32"
+          },
+          {
+            "name": "correct_answers_count",
+            "type": "u32"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserEstimate",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "forecaster",
+            "type": "pubkey"
+          },
+          {
+            "name": "poll",
+            "type": "pubkey"
+          },
+          {
+            "name": "lower_estimate",
+            "type": "u16"
+          },
+          {
+            "name": "upper_estimate",
+            "type": "u16"
+          },
+          {
+            "name": "score_weight",
+            "type": "f32"
+          },
+          {
+            "name": "recency_weight",
+            "type": "f32"
+          },
+          {
+            "name": "num_forecasters",
+            "type": "u64"
+          },
+          {
+            "name": "num_estimate_updates",
+            "type": "u64"
+          },
+          {
+            "name": "options",
+            "type": {
+              "option": "f32"
+            }
+          },
+          {
+            "name": "cost",
+            "type": {
+              "option": "f32"
+            }
+          },
+          {
+            "name": "ln_a",
+            "type": {
+              "option": "f32"
+            }
+          },
+          {
+            "name": "ln_b",
+            "type": {
+              "option": "f32"
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserEstimateUpdate",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "poll",
+            "type": "pubkey"
+          },
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "slot",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "lower_estimate",
+            "type": "u16"
+          },
+          {
+            "name": "upper_estimate",
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserScore",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "forecaster",
+            "type": "pubkey"
+          },
+          {
+            "name": "poll",
+            "type": "pubkey"
+          },
+          {
+            "name": "options",
+            "type": "f32"
+          },
+          {
+            "name": "last_lower_option",
+            "type": "f32"
+          },
+          {
+            "name": "last_upper_option",
+            "type": "f32"
+          },
+          {
+            "name": "cost",
+            "type": "f32"
+          },
+          {
+            "name": "last_lower_cost",
+            "type": "f32"
+          },
+          {
+            "name": "last_upper_cost",
+            "type": "f32"
+          },
+          {
+            "name": "last_peer_score_a",
+            "type": "f32"
+          },
+          {
+            "name": "last_peer_score_b",
+            "type": "f32"
+          },
+          {
+            "name": "ln_a",
+            "type": "f32"
+          },
+          {
+            "name": "ln_b",
+            "type": "f32"
+          },
+          {
+            "name": "peer_score_a",
+            "type": "f32"
+          },
+          {
+            "name": "peer_score_b",
+            "type": "f32"
+          },
+          {
+            "name": "last_slot",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ]
+}
