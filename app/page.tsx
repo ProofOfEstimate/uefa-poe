@@ -22,7 +22,9 @@ import { Separator } from "@/components/ui/separator";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1 className="text-4xl font-bold mb-4">Matchday 1</h1>
+      <h2 id="matchday1" className="text-4xl font-bold mb-4">
+        Matchday 1
+      </h2>
       <Table className="min-w-[1000px]">
         <TableHeader>
           <TableRow>
@@ -56,7 +58,9 @@ export default function Home() {
         </TableBody>
       </Table>
       <Separator />
-      <h1 className="text-4xl font-bold mt-8">Matchday 2</h1>
+      <h2 id="matchday2" className="text-4xl font-bold mt-8">
+        Matchday 2
+      </h2>
       <Table className="min-w-[1000px]">
         <TableHeader>
           <TableRow>
@@ -90,7 +94,9 @@ export default function Home() {
         </TableBody>
       </Table>
       <Separator />
-      <h1 className="text-4xl font-bold mt-8">Matchday 3</h1>
+      <h2 id="matchday3" className="text-4xl font-bold mt-8">
+        Matchday 3
+      </h2>
       <Table className="min-w-[1000px]">
         <TableHeader>
           <TableRow>
@@ -124,7 +130,9 @@ export default function Home() {
         </TableBody>
       </Table>
       <Separator />
-      <h1 className="text-4xl font-bold mt-8">Round of 16</h1>
+      <h2 id="round16" className="text-4xl font-bold mt-8">
+        Round of 16
+      </h2>
       <Table className="min-w-[1000px]">
         <TableHeader>
           <TableRow>
@@ -158,7 +166,9 @@ export default function Home() {
         </TableBody>
       </Table>
       <Separator />
-      <h1 className="text-4xl font-bold mt-8">Quarter Finals</h1>
+      <h2 id="quarter" className="text-4xl font-bold mt-8">
+        Quarter Finals
+      </h2>
       <Table className="min-w-[1000px]">
         <TableHeader>
           <TableRow>
@@ -192,7 +202,9 @@ export default function Home() {
         </TableBody>
       </Table>
       <Separator />
-      <h1 className="text-4xl font-bold mt-8">Semi Finals</h1>
+      <h2 id="semi" className="text-4xl font-bold mt-8">
+        Semi Finals
+      </h2>
       <Table className="min-w-[1000px]">
         <TableHeader>
           <TableRow>
@@ -226,7 +238,9 @@ export default function Home() {
         </TableBody>
       </Table>
       <Separator />
-      <h1 className="text-4xl font-bold mt-8">Final</h1>
+      <h2 id="final" className="text-4xl font-bold mt-8">
+        Final
+      </h2>
       <Table className="min-w-[1000px]">
         <TableHeader>
           <TableRow>
