@@ -28,7 +28,7 @@ export default function RootLayout({
           UEFA Championship powered by Poe
         </h1>
         <Separator />
-        <div className="flex">
+        <div className="flex w-full">
           <aside className="hidden md:block md:min-w-40 md:w-1/5 lg:w-1/6 border-r">
             <SideNav />
           </aside>
