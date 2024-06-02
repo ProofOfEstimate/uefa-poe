@@ -24,14 +24,14 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <h1 className="text-center p-8 text-4xl font-bold">
+        {/* <h1 className="text-center p-8 text-4xl font-bold">
           UEFA Championship powered by Poe
         </h1>
-        <Separator />
+        <Separator /> */}
         <div className="flex w-full">
-          <aside className="hidden md:block md:min-w-40 md:w-1/5 lg:w-1/6 border-r">
+          {/* <aside className="hidden md:block md:min-w-40 md:w-1/5 lg:w-1/6 border-r">
             <SideNav />
-          </aside>
+          </aside> */}
           {children}
         </div>
       </body>
