@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 interface TableRowProps {
@@ -29,7 +30,9 @@ const TableRow: React.FC<TableRowProps> = ({
       <td className="h-[5rem] font-rubik text-[1.3rem] font-bold flex justify-end items-center">
         {points}
         {isGold && (
-          <img
+          <Image
+            width={50}
+            height={50}
             className="h-[3rem] ml-[1.5rem]"
             src="https://github.com/malunaridev/Challenges-iCodeThis/blob/master/4-leaderboard/assets/gold-medal.png?raw=true"
             alt="gold medal"
