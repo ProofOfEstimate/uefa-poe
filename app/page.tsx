@@ -11,7 +11,6 @@ export default function App() {
           className="flex items-center justify-center"
           prefetch={false}
         >
-          <PiIcon className="h-6 w-6" />
           <span className="sr-only">Poe</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
@@ -56,7 +55,7 @@ export default function App() {
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
                   Poe is a platform that empowers users to participate in
                   prediction markets by predicting probabilities rather than
-                  just outcomes. It's a fair, scalable, and the future of
+                  just outcomes. It&apos;s a fair, scalable, and the future of
                   predictions.
                 </p>
                 <div className="my-3 sm:my-7">
@@ -91,7 +90,7 @@ export default function App() {
               <div className="grid gap-1">
                 <h3 className="text-lg font-bold">Fairness</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Poe's decentralized platform ensures fair and transparent
+                  Poe&apos;s decentralized platform ensures fair and transparent
                   prediction markets, where users can trust the integrity of the
                   system.
                 </p>
@@ -99,7 +98,7 @@ export default function App() {
               <div className="grid gap-1">
                 <h3 className="text-lg font-bold">Scalability</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Poe's scalable infrastructure allows for high-volume
+                  Poe&apos;s scalable infrastructure allows for high-volume
                   prediction markets, enabling users to participate in a wide
                   range of events.
                 </p>
@@ -107,9 +106,9 @@ export default function App() {
               <div className="grid gap-1">
                 <h3 className="text-lg font-bold">The Future of Predictions</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Poe's innovative approach to prediction markets represents the
-                  future of forecasting, where users can leverage their
-                  knowledge to earn rewards.
+                  Poe&apos;s innovative approach to prediction markets
+                  represents the future of forecasting, where users can leverage
+                  their knowledge to earn rewards.
                 </p>
               </div>
             </div>
@@ -138,26 +137,5 @@ export default function App() {
         </nav>
       </footer>
     </div>
-  );
-}
-
-function PiIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="9" x2="9" y1="4" y2="20" />
-      <path d="M4 7c0-1.7 1.3-3 3-3h13" />
-      <path d="M18 20c-1.7 0-3-1.3-3-3V4" />
-    </svg>
   );
 }
