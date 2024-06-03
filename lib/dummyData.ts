@@ -1,20 +1,22 @@
-type Match = {
+export type Match = {
   id: string;
   date: string;
   teamA: string;
   teamB: string;
+  logoA: string;
+  logoB: string;
 };
 
 const flagBaseUrl = "https://flagcdn.com/48x36/";
 
-export const matchesFirstMatchDay = [
+export const matchesFirstMatchDay: Match[] = [
   {
     id: "1",
     date: "14.06.24 21:00",
     teamA: "Germany",
     teamB: "Scotland",
-    logoA: `${flagBaseUrl}ge.png`,
-    logoB: `${flagBaseUrl}sc.png`,
+    logoA: `${flagBaseUrl}de.png`,
+    logoB: `${flagBaseUrl}gb-sct.png`,
   },
   {
     id: "2",
@@ -30,7 +32,7 @@ export const matchesFirstMatchDay = [
     teamA: "Spain",
     teamB: "Croatia",
     logoA: `${flagBaseUrl}es.png`,
-    logoB: `${flagBaseUrl}cr.png`,
+    logoB: `${flagBaseUrl}hr.png`,
   },
   {
     id: "4",
@@ -46,22 +48,22 @@ export const matchesFirstMatchDay = [
     teamA: "Poland",
     teamB: "Netherlands",
     logoA: `${flagBaseUrl}pl.png`,
-    logoB: `${flagBaseUrl}ne.png`,
+    logoB: `${flagBaseUrl}nl.png`,
   },
   {
     id: "6",
     date: "16.06.24 18:00",
     teamA: "Slovenia",
     teamB: "Denmark",
-    logoA: `${flagBaseUrl}sl.png`,
-    logoB: `${flagBaseUrl}de.png`,
+    logoA: `${flagBaseUrl}si.png`,
+    logoB: `${flagBaseUrl}dk.png`,
   },
   {
     id: "7",
     date: "16.06.24 21:00",
     teamA: "Serbia",
     teamB: "England",
-    logoA: `${flagBaseUrl}se.png`,
+    logoA: `${flagBaseUrl}rs.png`,
     logoB: `${flagBaseUrl}gb-eng.png`,
   },
   {
@@ -78,14 +80,14 @@ export const matchesFirstMatchDay = [
     teamA: "Belgium",
     teamB: "Slovakia",
     logoA: `${flagBaseUrl}be.png`,
-    logoB: `${flagBaseUrl}sl.png`,
+    logoB: `${flagBaseUrl}sk.png`,
   },
   {
     id: "10",
     date: "17.06.24 21:00",
     teamA: "Austria",
     teamB: "France",
-    logoA: `${flagBaseUrl}au.png`,
+    logoA: `${flagBaseUrl}at.png`,
     logoB: `${flagBaseUrl}fr.png`,
   },
   {
@@ -106,13 +108,13 @@ export const matchesFirstMatchDay = [
   },
 ];
 
-export const matchesSecondMatchday = [
+export const matchesSecondMatchday: Match[] = [
   {
     id: "13",
     date: "19.06.24 15:00",
     teamA: "Croatia",
     teamB: "Albania",
-    logoA: `${flagBaseUrl}cr.png`,
+    logoA: `${flagBaseUrl}hr.png`,
     logoB: `${flagBaseUrl}al.png`,
   },
   {
@@ -120,7 +122,7 @@ export const matchesSecondMatchday = [
     date: "19.06.24 18:00",
     teamA: "Germany",
     teamB: "Hungary",
-    logoA: `${flagBaseUrl}ge.png`,
+    logoA: `${flagBaseUrl}de.png`,
     logoB: `${flagBaseUrl}hu.png`,
   },
   {
@@ -128,7 +130,7 @@ export const matchesSecondMatchday = [
     date: "19.06.24 21:00",
     teamA: "Scotland",
     teamB: "Switzerland",
-    logoA: `${flagBaseUrl}sc.png`,
+    logoA: `${flagBaseUrl}gb-sct.png`,
     logoB: `${flagBaseUrl}ch.png`,
   },
   {
@@ -136,15 +138,15 @@ export const matchesSecondMatchday = [
     date: "20.06.24 15:00",
     teamA: "Slovenia",
     teamB: "Serbia",
-    logoA: `${flagBaseUrl}sl.png`,
-    logoB: `${flagBaseUrl}se.png`,
+    logoA: `${flagBaseUrl}si.png`,
+    logoB: `${flagBaseUrl}rs.png`,
   },
   {
     id: "17",
     date: "20.06.24 18:00",
     teamA: "Denmark",
     teamB: "England",
-    logoA: `${flagBaseUrl}de.png`,
+    logoA: `${flagBaseUrl}dk.png`,
     logoB: `${flagBaseUrl}gb-eng.png`,
   },
   {
@@ -160,7 +162,7 @@ export const matchesSecondMatchday = [
     date: "21.06.24 15:00",
     teamA: "Slovakia",
     teamB: "Ukraine",
-    logoA: `${flagBaseUrl}sl.png`,
+    logoA: `${flagBaseUrl}sk.png`,
     logoB: `${flagBaseUrl}ua.png`,
   },
   {
@@ -169,14 +171,14 @@ export const matchesSecondMatchday = [
     teamA: "Poland",
     teamB: "Austria",
     logoA: `${flagBaseUrl}pl.png`,
-    logoB: `${flagBaseUrl}au.png`,
+    logoB: `${flagBaseUrl}at.png`,
   },
   {
     id: "21",
     date: "21.06.24 21:00",
     teamA: "Netherland",
     teamB: "France",
-    logoA: `${flagBaseUrl}ne.png`,
+    logoA: `${flagBaseUrl}nl.png`,
     logoB: `${flagBaseUrl}fr.png`,
   },
   {
@@ -205,21 +207,21 @@ export const matchesSecondMatchday = [
   },
 ];
 
-export const matchesThirdMatchday = [
+export const matchesThirdMatchday: Match[] = [
   {
     id: "25",
     date: "23.06.24 21:00",
     teamA: "Switzerland",
     teamB: "Germany",
     logoA: `${flagBaseUrl}ch.png`,
-    logoB: `${flagBaseUrl}ge.png`,
+    logoB: `${flagBaseUrl}de.png`,
   },
   {
     id: "26",
     date: "23.06.24 21:00",
     teamA: "Scotland",
     teamB: "Hungary",
-    logoA: `${flagBaseUrl}sc.png`,
+    logoA: `${flagBaseUrl}gb-sct.png`,
     logoB: `${flagBaseUrl}hu.png`,
   },
   {
@@ -227,15 +229,15 @@ export const matchesThirdMatchday = [
     date: "24.06.24 21:00",
     teamA: "Albania",
     teamB: "Spain",
-    logoA: `${flagBaseUrl}es.png`,
-    logoB: `${flagBaseUrl}sp.png`,
+    logoA: `${flagBaseUrl}al.png`,
+    logoB: `${flagBaseUrl}es.png`,
   },
   {
     id: "28",
     date: "24.06.24 21:00",
     teamA: "Croatia",
     teamB: "Italy",
-    logoA: `${flagBaseUrl}cr.png`,
+    logoA: `${flagBaseUrl}hr.png`,
     logoB: `${flagBaseUrl}it.png`,
   },
   {
@@ -243,8 +245,8 @@ export const matchesThirdMatchday = [
     date: "25.06.24 18:00",
     teamA: "Netherlands",
     teamB: "Austria",
-    logoA: `${flagBaseUrl}ne.png`,
-    logoB: `${flagBaseUrl}au.png`,
+    logoA: `${flagBaseUrl}nl.png`,
+    logoB: `${flagBaseUrl}at.png`,
   },
   {
     id: "30",
@@ -260,22 +262,22 @@ export const matchesThirdMatchday = [
     teamA: "England",
     teamB: "Slovenia",
     logoA: `${flagBaseUrl}gb-eng.png`,
-    logoB: `${flagBaseUrl}sl.png`,
+    logoB: `${flagBaseUrl}si.png`,
   },
   {
     id: "32",
     date: "25.06.24 21:00",
     teamA: "Denmark",
     teamB: "Serbia",
-    logoA: `${flagBaseUrl}de.png`,
-    logoB: `${flagBaseUrl}se.png`,
+    logoA: `${flagBaseUrl}dk.png`,
+    logoB: `${flagBaseUrl}rs.png`,
   },
   {
     id: "33",
     date: "26.06.24 18:00",
     teamA: "Slovakia",
     teamB: "Romania",
-    logoA: `${flagBaseUrl}sl.png`,
+    logoA: `${flagBaseUrl}sk.png`,
     logoB: `${flagBaseUrl}ro.png`,
   },
   {
@@ -310,48 +312,64 @@ export const matchesRound16: Match[] = [
     date: "29.06.24 18:00",
     teamA: "tbd",
     teamB: "tbd",
+    logoA: "",
+    logoB: "",
   },
   {
     id: "38",
     date: "29.06.24 21:00",
     teamA: "tbd",
     teamB: "tbd",
+    logoA: "",
+    logoB: "",
   },
   {
     id: "39",
     date: "30.06.24 18:00",
     teamA: "tbd",
     teamB: "tbd",
+    logoA: "",
+    logoB: "",
   },
   {
     id: "40",
     date: "30.06.24 21:00",
     teamA: "tbd",
     teamB: "tbd",
+    logoA: "",
+    logoB: "",
   },
   {
     id: "41",
     date: "01.07.24 18:00",
     teamA: "tbd",
     teamB: "tbd",
+    logoA: "",
+    logoB: "",
   },
   {
     id: "42",
     date: "01.07.24 21:00",
     teamA: "tbd",
     teamB: "tbd",
+    logoA: "",
+    logoB: "",
   },
   {
     id: "43",
     date: "02.07.24 18:00",
     teamA: "tbd",
     teamB: "tbd",
+    logoA: "",
+    logoB: "",
   },
   {
     id: "44",
     date: "02.07.24 21:00",
     teamA: "tbd",
     teamB: "tbd",
+    logoA: "",
+    logoB: "",
   },
 ];
 export const matchesQuarterFinals: Match[] = [
@@ -360,24 +378,32 @@ export const matchesQuarterFinals: Match[] = [
     date: "05.07.24 18:00",
     teamA: "tbd",
     teamB: "tbd",
+    logoA: "",
+    logoB: "",
   },
   {
     id: "46",
     date: "05.07.24 21:00",
     teamA: "tbd",
     teamB: "tbd",
+    logoA: "",
+    logoB: "",
   },
   {
     id: "47",
     date: "06.07.24 18:00",
     teamA: "tbd",
     teamB: "tbd",
+    logoA: "",
+    logoB: "",
   },
   {
     id: "48",
     date: "07.07.24 21:00",
     teamA: "tbd",
     teamB: "tbd",
+    logoA: "",
+    logoB: "",
   },
 ];
 export const matchesSemiFinals: Match[] = [
@@ -386,12 +412,16 @@ export const matchesSemiFinals: Match[] = [
     date: "09.07.24 21:00",
     teamA: "tbd",
     teamB: "tbd",
+    logoA: "",
+    logoB: "",
   },
   {
     id: "50",
     date: "10.07.24 21:00",
     teamA: "tbd",
     teamB: "tbd",
+    logoA: "",
+    logoB: "",
   },
 ];
 export const matchesFinal: Match[] = [
@@ -400,5 +430,7 @@ export const matchesFinal: Match[] = [
     date: "14.07.24 21:00",
     teamA: "tbd",
     teamB: "tbd",
+    logoA: "",
+    logoB: "",
   },
 ];
