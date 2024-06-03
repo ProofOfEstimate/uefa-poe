@@ -4,7 +4,7 @@ import React from "react";
 
 export default function App() {
   return (
-    <div className="flex flex-col min-h-[100dvh]">
+    <div className="flex flex-col min-h-[100dvh] w-full">
       <header className="px-4 lg:px-6 h-14 flex items-center">
         <Link
           href="#"
