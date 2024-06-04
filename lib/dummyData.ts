@@ -434,3 +434,12 @@ export const matchesFinal: Match[] = [
     logoB: "",
   },
 ];
+
+export const allMatches: Match[] = matchesFirstMatchDay.concat(
+  matchesSecondMatchday,
+  matchesThirdMatchday,
+  matchesRound16,
+  matchesQuarterFinals,
+  matchesSemiFinals,
+  matchesFinal
+);
