@@ -43,7 +43,13 @@ export const MatchCard = ({ match }: { match: Match }) => {
         <label className="block text-sm font-medium">
           Prob. that {match.teamA} wins
         </label>
-        <Slider defaultValue={[33]} max={100} step={1} className="mt-2" />
+        <Slider
+          onClick={(e) => e.stopPropagation()}
+          defaultValue={[33]}
+          max={100}
+          step={1}
+          className="mt-2"
+        />
       </div>
       <Button
         onClick={(e) => {
