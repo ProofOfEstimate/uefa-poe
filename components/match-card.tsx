@@ -18,25 +18,25 @@ export const MatchCard = ({ match }: { match: Match }) => {
     >
       <div className="font-medium text-lg mb-2">{match.date}</div>
       <div className="flex justify-between mb-2">
-        <div className="flex justify-evenly w-full">
+        <div className="flex justify-evenly w-full items-center">
           <Image
-            width={48}
-            height={36}
+            width={36}
+            height={27}
             alt="Flag of team A"
             src={match.logoA ? match.logoA : "https://via.placeholder.com/50"}
           />
-          <span>{match.teamA}</span>
+          <span className="text-lg font-bold">{match.teamA}</span>
         </div>
 
         <span>vs</span>
-        <div className="flex justify-evenly w-full">
+        <div className="flex justify-evenly w-full items-center">
           <Image
-            width={48}
-            height={36}
+            width={36}
+            height={27}
             alt="Flag of team B"
             src={match.logoB ? match.logoB : "https://via.placeholder.com/50"}
           />
-          <span>{match.teamB}</span>
+          <span className="text-lg font-bold">{match.teamB}</span>
         </div>
       </div>
       <div className="flex flex-col justify-between mb-2">
