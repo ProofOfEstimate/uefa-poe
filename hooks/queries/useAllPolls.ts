@@ -1,7 +1,7 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { Program } from "@coral-xyz/anchor";
-import { Poe } from "@/idl/poe";
 import { Poll } from "@/lib/types";
+import { Poe } from "@/idl/poe";
 
 const allPollsKey = "allPolls";
 

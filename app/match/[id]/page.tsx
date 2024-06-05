@@ -20,6 +20,7 @@ import {
   YAxis,
 } from "recharts";
 import { useState } from "react";
+import { useAllPolls } from "@/hooks/queries/useAllPolls";
 
 const Match = ({ params }: { params: { id: string } }) => {
   const router = useRouter();

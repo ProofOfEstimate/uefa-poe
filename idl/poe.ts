@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/poe.json`.
  */
 export type Poe = {
-  address: "485U8Ea7YoM6Nd5QR7AmZu34RBeMTG5P3iG5KAEcecTi";
+  address: "HekQLx6SYDZgakKAkz7RqsbCesfCdbaHAUvQiWttpZB1";
   metadata: {
     name: "poe";
     version: "0.1.0";
@@ -13,6 +13,73 @@ export type Poe = {
     description: "Proof of Estimate - Prediction Poll";
   };
   instructions: [
+    {
+      name: "addMetadata";
+      discriminator: [231, 195, 40, 240, 67, 231, 53, 136];
+      accounts: [
+        {
+          name: "payer";
+          writable: true;
+          signer: true;
+        },
+        {
+          name: "auth";
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [97, 117, 116, 104];
+              }
+            ];
+          };
+        },
+        {
+          name: "mint";
+          writable: true;
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [112, 111, 101, 107, 101, 110, 95, 109, 105, 110, 116];
+              }
+            ];
+          };
+        },
+        {
+          name: "tokenProgram";
+          address: "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA";
+        },
+        {
+          name: "metadata";
+          writable: true;
+        },
+        {
+          name: "tokenMetadataProgram";
+        },
+        {
+          name: "systemProgram";
+          address: "11111111111111111111111111111111";
+        },
+        {
+          name: "rent";
+          address: "SysvarRent111111111111111111111111111111111";
+        }
+      ];
+      args: [
+        {
+          name: "uri";
+          type: "string";
+        },
+        {
+          name: "name";
+          type: "string";
+        },
+        {
+          name: "symbol";
+          type: "string";
+        }
+      ];
+    },
     {
       name: "collectPoints";
       discriminator: [221, 8, 237, 153, 212, 171, 156, 131];
@@ -137,6 +204,17 @@ export type Poe = {
               {
                 kind: "account";
                 path: "forecaster";
+              }
+            ];
+          };
+        },
+        {
+          name: "auth";
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [97, 117, 116, 104];
               }
             ];
           };
@@ -295,6 +373,17 @@ export type Poe = {
               {
                 kind: "const";
                 value: [112, 111, 101, 95, 115, 116, 97, 116, 101];
+              }
+            ];
+          };
+        },
+        {
+          name: "auth";
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [97, 117, 116, 104];
               }
             ];
           };
@@ -518,6 +607,17 @@ export type Poe = {
           };
         },
         {
+          name: "auth";
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [97, 117, 116, 104];
+              }
+            ];
+          };
+        },
+        {
           name: "escrowAccount";
           writable: true;
           pda: {
@@ -574,6 +674,17 @@ export type Poe = {
               {
                 kind: "account";
                 path: "payer";
+              }
+            ];
+          };
+        },
+        {
+          name: "auth";
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [97, 117, 116, 104];
               }
             ];
           };
@@ -852,6 +963,69 @@ export type Poe = {
       ];
     },
     {
+      name: "startPoll";
+      discriminator: [59, 188, 204, 28, 129, 88, 202, 242];
+      accounts: [
+        {
+          name: "creator";
+          writable: true;
+          signer: true;
+          relations: ["poll"];
+        },
+        {
+          name: "poll";
+          writable: true;
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [112, 111, 108, 108];
+              },
+              {
+                kind: "account";
+                path: "poll.id";
+                account: "poll";
+              }
+            ];
+          };
+        },
+        {
+          name: "scoringList";
+          writable: true;
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [
+                  115,
+                  99,
+                  111,
+                  114,
+                  105,
+                  110,
+                  103,
+                  95,
+                  108,
+                  105,
+                  115,
+                  116
+                ];
+              },
+              {
+                kind: "account";
+                path: "poll";
+              }
+            ];
+          };
+        },
+        {
+          name: "systemProgram";
+          address: "11111111111111111111111111111111";
+        }
+      ];
+      args: [];
+    },
+    {
       name: "updateEstimate";
       discriminator: [16, 66, 42, 145, 179, 218, 133, 181];
       accounts: [
@@ -1102,16 +1276,21 @@ export type Poe = {
   errors: [
     {
       code: 6000;
+      name: "pollAlreadyStarted";
+      msg: "Poll has already started.";
+    },
+    {
+      code: 6001;
       name: "pollClosed";
       msg: "Poll is closed.";
     },
     {
-      code: 6001;
+      code: 6002;
       name: "pollNotResolved";
       msg: "Poll has not been resolved.";
     },
     {
-      code: 6002;
+      code: 6003;
       name: "pollAlreadyResolved";
       msg: "Poll has already been resolved.";
     }
@@ -1165,6 +1344,10 @@ export type Poe = {
           {
             name: "category";
             type: "u16";
+          },
+          {
+            name: "hasStarted";
+            type: "bool";
           },
           {
             name: "bettingAmount";
@@ -1383,25 +1566,13 @@ export type Poe = {
             type: "u64";
           },
           {
-            name: "options";
+            name: "reputationScore";
             type: {
               option: "f32";
             };
           },
           {
-            name: "cost";
-            type: {
-              option: "f32";
-            };
-          },
-          {
-            name: "lnA";
-            type: {
-              option: "f32";
-            };
-          },
-          {
-            name: "lnB";
+            name: "payoutScore";
             type: {
               option: "f32";
             };

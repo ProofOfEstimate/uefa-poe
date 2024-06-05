@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { AnchorProvider, Idl, Program } from "@coral-xyz/anchor";
 import { useAnchorWallet, useConnection } from "@solana/wallet-adapter-react";
-import { Poe } from "@/idl/poe";
 import idlFile from "@/idl/poe.json";
+import { Poe } from "@/idl/poe";
 import { Keypair } from "@solana/web3.js";
 
 export default function useAnchorProgram(): Program<Poe> {
