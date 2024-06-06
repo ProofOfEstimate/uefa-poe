@@ -2,7 +2,7 @@
 
 export default function SideNav() {
   return (
-    <div className="flex flex-col items-center py-4 px-10 gap-8 mt-16 fixed ">
+    <div className="flex flex-col items-start py-4 px-10 gap-8 mt-16 fixed">
       <SideNavItem id="matchday1" title="Matchday 1" />
       <SideNavItem id="matchday2" title="Matchday 2" />
       <SideNavItem id="matchday3" title="Matchday 3" />
@@ -23,7 +23,7 @@ const SideNavItem = ({ id, title }: { id: string; title: string }) => {
   return (
     <div
       onClick={() => scrollTo(id)}
-      className="text-xl p-2 rounded-md font-bold hover:cursor-pointer hover:bg-slate-300"
+      className="text-lg p-2 rounded-md font-semibold hover:cursor-pointer hover:bg-slate-300"
     >
       {title}
     </div>
