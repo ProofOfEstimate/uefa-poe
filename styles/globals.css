@@ -75,6 +75,14 @@
   }
 }
 
+.wallet-adapter-button:not([disabled]):hover {
+  background-color: #505050;
+}
+
+.wallet-adapter-button:not([disabled]) {
+  background-color: #707070;
+}
+
 * {
   font-size: 62, 5%;
   box-sizing: border-box;

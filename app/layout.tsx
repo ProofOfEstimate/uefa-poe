@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import SideNav from "@/components/sidenav";
 import { Separator } from "@/components/ui/separator";
 import Providers from "./providers";
+import { NavBar } from "@/components/nav-bar";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
           <h1 className="text-center p-8 text-4xl font-bold">
             UEFA Championship powered by Poe
           </h1>
+          <NavBar />
           <Separator />
           {children}
         </Providers>
