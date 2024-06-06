@@ -75,6 +75,14 @@
   }
 }
 
+.wallet-adapter-button:not([disabled]):hover {
+  background-color: #505050;
+}
+
+.wallet-adapter-button:not([disabled]) {
+  background-color: #707070;
+}
+
 * {
   font-size: 62, 5%;
   box-sizing: border-box;
@@ -82,23 +90,14 @@
 }
 
 body {
-  height: 100%;
-  width: 100%;
-  min-height: 100vh;
-  background-color: #fbfaff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-main {
-  width: 40rem;
-  height: 43rem;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 0.5rem;
+  overscroll-behavior-y: none;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
 }
 
 #header {
