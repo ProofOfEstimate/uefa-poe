@@ -27,9 +27,6 @@ export default function RootLayout({
         )}
       >
         <Providers>
-          <h1 className="text-center p-8 text-4xl font-bold">
-            UEFA Championship powered by Poe
-          </h1>
           <NavBar />
           <Separator />
           {children}

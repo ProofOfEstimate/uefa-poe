@@ -29,7 +29,7 @@ import { useAllPollsByUser } from "@/hooks/queries/useAllPollsByUser";
 import { Skeleton } from "./ui/skeleton";
 import { useUserAccount } from "@/hooks/queries/useUserAccount";
 import { useUserSolBalance } from "@/hooks/queries/useUserSolBalance";
-import { PublicKey } from "@solana/web3.js";
+import { FaWallet } from "react-icons/fa";
 
 const ConnectWalletButton = () => {
   const wallet = useAnchorWallet();
@@ -55,7 +55,10 @@ const ConnectWalletButton = () => {
           setVisible(true);
         }}
       >
-        Connect wallet
+        <div className="flex gap-2 items-center">
+          <FaWallet />
+          <div className="hidden sm:block">Connect wallet</div>
+        </div>
       </Button>
     );
   }
@@ -64,7 +67,11 @@ const ConnectWalletButton = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button>
-          Connected <RiArrowDropDownLine className="text-xl ml-2" />
+          <div className="flex gap-2 items-center">
+            <FaWallet className="sm:hidden" />
+            <div className="hidden sm:block">Connected</div>
+          </div>
+          <RiArrowDropDownLine className="text-xl ml-2" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
