@@ -15,8 +15,79 @@ import {
 import { Separator } from "./ui/separator";
 import Link from "next/link";
 import { RiArrowRightDoubleLine } from "react-icons/ri";
+import useAnchorProgram from "@/hooks/useAnchorProgram";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { useUserEstimateByPoll } from "@/hooks/queries/useUserEstimateByPoll";
+import { useMakeEstimate } from "@/hooks/mutations/useMakeEstimate";
+import { useUserScore } from "@/hooks/queries/useUserScore";
+import { useUpdateEstimate } from "@/hooks/mutations/useUpdateEstimate";
+import { useCollectPoints } from "@/hooks/mutations/useCollectPoints";
+import { useEffect, useState } from "react";
+import { usePollById } from "@/hooks/queries/usePollById";
+import { Skeleton } from "./ui/skeleton";
+import { TbLoader2 } from "react-icons/tb";
 
 export const MatchCard = ({ match }: { match: Match }) => {
+  const program = useAnchorProgram();
+  const { connection } = useConnection();
+  const wallet = useWallet();
+
+  const matchId = Number.parseInt(match.id);
+  const {
+    data: userEstimate,
+    isError: isErrorEstimate,
+    error: errorEstimate,
+    isLoading: isLoadingEstimate,
+  } = useUserEstimateByPoll(program, connection, wallet.publicKey, matchId);
+
+  const {
+    data: poll,
+    isLoading: isLoadingPoll,
+    isError: isErrorPoll,
+    error: errorPoll,
+  } = usePollById(program, matchId);
+
+  const { data: userScore, isLoading: isLoadingScore } = useUserScore(
+    program,
+    connection,
+    wallet.publicKey,
+    matchId
+  );
+
+  const { mutate: submitEstimate, isPending: isSubmitting } = useMakeEstimate(
+    program,
+    connection,
+    wallet
+  );
+  const { mutate: updateEstimate, isPending: isUpdating } = useUpdateEstimate(
+    program,
+    connection,
+    wallet
+  );
+  const { mutate: collectPoints, isPending: isCollecting } = useCollectPoints(
+    program,
+    connection,
+    wallet
+  );
+
+  const [estimate, setEstimate] = useState(
+    userEstimate !== null && userEstimate !== undefined
+      ? (userEstimate.lowerEstimate + userEstimate.upperEstimate) / 2
+      : undefined
+  );
+
+  useEffect(() => {
+    if (userEstimate !== null && userEstimate !== undefined) {
+      setEstimate(
+        (userEstimate.lowerEstimate + userEstimate.upperEstimate) / 2
+      );
+    }
+  }, [userEstimate]);
+
+  const handleChange = (estimate: [number]) => {
+    setEstimate(estimate[0]);
+  };
+
   return (
     <Card className="w-full mx-4 sm:mx-0 sm:w-[25rem]">
       <CardHeader>
@@ -45,31 +116,118 @@ export const MatchCard = ({ match }: { match: Match }) => {
         <p className="block text-md font-semibold mb-2">
           Prob. that {match.teamA} wins
         </p>
-        <p className="block text-sm">Market Prediction: 42%</p>
-        <p className="block text-sm">Your Prediction: 75%</p>
+        <div className="flex w-1/2 justify-between">
+          <p className="block text-sm">Market Prediction:</p>
+          <p className="text-sm">
+            {poll && poll.collectiveEstimate !== null
+              ? (poll.collectiveEstimate / 10000).toFixed(0) + "%"
+              : "-"}
+          </p>
+        </div>
+        <div className="flex w-1/2 justify-between">
+          <p className="block text-sm">Your Prediction:</p>
+          <p className="text-sm">{estimate ? estimate + "%" : "-"}</p>
+        </div>
         <div className="flex gap-4 items-center">
           <Slider
             onClick={(e) => e.stopPropagation()}
-            defaultValue={[33]}
+            onValueChange={handleChange}
+            value={[estimate ? estimate : 0]}
             max={100}
             step={1}
             className="my-4"
+            disabled={poll?.result !== null}
           />
-          <Button variant={"secondary"} size={"sm"}>
+          <Button
+            variant={"secondary"}
+            size={"sm"}
+            onClick={() => {
+              if (userEstimate !== null && userEstimate !== undefined) {
+                setEstimate(
+                  (userEstimate.lowerEstimate + userEstimate.upperEstimate) / 2
+                );
+              } else {
+                setEstimate(undefined);
+              }
+            }}
+          >
             Reset
           </Button>
         </div>
       </CardContent>
       <CardFooter>
         <div className="w-full flex gap-4 items-center justify-between">
-          <Button
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
-            className="text-white font-bold rounded w-full "
-          >
-            Submit Estimate
-          </Button>
+          {isLoadingPoll ? (
+            <Skeleton className="w-3/5 h-9 rounded-md" />
+          ) : poll?.result !== null ? (
+            userScore === null || userScore === undefined || isLoadingScore ? (
+              <div>
+                {poll !== undefined ? (
+                  poll.result ? (
+                    <div className="text-primary font-bold">
+                      {match.teamA} won!
+                    </div>
+                  ) : (
+                    <div className="text-primary font-bold">
+                      {match.teamA} did not win!
+                    </div>
+                  )
+                ) : (
+                  ""
+                )}
+              </div>
+            ) : (
+              <Button
+                disabled={isCollecting}
+                className="w-3/5"
+                onClick={() => collectPoints({ pollId: matchId })}
+              >
+                {isCollecting && (
+                  <TbLoader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                Collect Points
+              </Button>
+            )
+          ) : userEstimate !== undefined && userEstimate !== null ? (
+            <Button
+              disabled={
+                isUpdating ||
+                (estimate === userEstimate.lowerEstimate &&
+                  estimate === userEstimate.upperEstimate)
+              }
+              className="w-3/5"
+              onClick={() =>
+                updateEstimate({
+                  pollId: matchId,
+                  lowerEstimate: estimate,
+                  upperEstimate: estimate,
+                })
+              }
+            >
+              {isUpdating && (
+                <TbLoader2 className="mr-2 h-4 w-4 animate-spin" />
+              )}
+              Update Estimate
+            </Button>
+          ) : (
+            <Button
+              disabled={isSubmitting || estimate === undefined}
+              className="text-white font-bold rounded w-full "
+              onClick={() =>
+                submitEstimate({
+                  pollId: matchId,
+                  lowerEstimate: estimate,
+                  upperEstimate: estimate,
+                })
+              }
+            >
+              {isSubmitting && (
+                <TbLoader2 className="mr-2 h-4 w-4 animate-spin" />
+              )}
+              Submit Estimate
+            </Button>
+          )}
+
           <Button size={"sm"} variant={"ghost"} asChild>
             <Link className="text-xs" href={"/match/" + match.id}>
               <RiArrowRightDoubleLine className="mr-2" /> Details
