@@ -140,6 +140,7 @@ export const MatchCard = ({ match }: { match: Match }) => {
           />
           <Button
             variant={"secondary"}
+            disabled={poll?.result !== null}
             size={"sm"}
             onClick={() => {
               if (userEstimate !== null && userEstimate !== undefined) {
