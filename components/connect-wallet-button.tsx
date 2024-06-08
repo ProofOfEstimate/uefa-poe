@@ -36,6 +36,7 @@ import { useAllUserAccounts } from "@/hooks/queries/useAllUserAccounts";
 
 const ConnectWalletButton = () => {
   const wallet = useWallet();
+  const anchorWallet = useAnchorWallet();
   const { disconnect, connected, publicKey } = useWallet();
   const program = useAnchorProgram();
   const { connection } = useConnection();
@@ -93,7 +94,7 @@ const ConnectWalletButton = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuItem className="font-normal">
-          {wallet && (
+          {anchorWallet && (
             <TooltipProvider delayDuration={200}>
               <Tooltip>
                 <TooltipTrigger>
@@ -101,15 +102,15 @@ const ConnectWalletButton = () => {
                     className="flex"
                     onClick={() => {
                       navigator.clipboard.writeText(
-                        wallet.publicKey?.toBase58() ?? ""
+                        anchorWallet.publicKey?.toBase58() ?? ""
                       );
                       toast({ variant: "default", title: "Copied!" });
                     }}
                   >
                     <div>
-                      {wallet?.publicKey?.toBase58().slice(0, 4) +
+                      {anchorWallet?.publicKey?.toBase58().slice(0, 4) +
                         "..." +
-                        wallet?.publicKey?.toBase58().slice(-4)}
+                        anchorWallet?.publicKey?.toBase58().slice(-4)}
                     </div>
                     <TbCopy className="ml-2" />
                   </div>

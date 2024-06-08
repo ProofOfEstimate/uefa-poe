@@ -41,7 +41,7 @@ const Leaderboard = () => {
           </h1>
         </div>
         <div id="leaderboard" className="w-full relative">
-          <div className="w-[42rem] h-[5.5rem] bg-[#5c5be5] absolute top-[-0.5rem] left-[-1rem] shadow-[0px_15px_11px_-6px_#7a7a7d]">
+          <div className="w-full h-[5.5rem] bg-[#5c5be5] absolute top-[-0.5rem] shadow-[0px_15px_11px_-6px_#7a7a7d]">
             <div className="absolute bottom-[-0.8rem] left-[0.35rem] w-[1.5rem] h-[1.5rem] bg-[#5c5be5] rotate-45 z-[-1]"></div>
             <div className="absolute bottom-[-0.8rem] right-[0.35rem] w-[1.5rem] h-[1.5rem] bg-[#5c5be5] rotate-45 z-[-1]"></div>
           </div>
