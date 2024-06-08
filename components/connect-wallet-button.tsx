@@ -32,6 +32,7 @@ import { useUserSolBalance } from "@/hooks/queries/useUserSolBalance";
 import { FaWallet } from "react-icons/fa";
 import { useUserBonkBalance } from "@/hooks/queries/useUserBonkBalance";
 import { useRegisterUser } from "@/hooks/mutations/useRegisterUser";
+import { useAllUserAccounts } from "@/hooks/queries/useAllUserAccounts";
 
 const ConnectWalletButton = () => {
   const wallet = useWallet();
@@ -40,11 +41,21 @@ const ConnectWalletButton = () => {
   const { connection } = useConnection();
   const { setVisible } = useWalletModal();
 
-  const { data: userScore, isLoading: isScoreLoading } = useUserAccount(
+  const { data: userAccount, isLoading: isAccountLoading } = useUserAccount(
     program,
     connection,
     publicKey
   );
+
+  const { data: allScores, isLoading: isScoresLoading } =
+    useAllUserAccounts(program);
+
+  const rank = allScores?.findIndex(
+    (element) =>
+      element.account.userAddress.toBase58() === wallet.publicKey?.toBase58()
+  );
+
+  console.log("Rank", rank);
 
   const { data: solBalance, isLoading: isSolBalanceLoading } =
     useUserSolBalance(connection, wallet?.publicKey ?? null);
@@ -117,9 +128,9 @@ const ConnectWalletButton = () => {
             <div className="flex flex-col mx-2 gap-2 text-sm">
               <div className="flex items-center justify-between">
                 <div>Score:</div>
-                {!isScoreLoading ? (
-                  userScore ? (
-                    <div>{userScore.score.toFixed(2)}</div>
+                {!isAccountLoading ? (
+                  userAccount ? (
+                    <div>{userAccount.score.toFixed(2)}</div>
                   ) : (
                     <div>100.0</div>
                   )
@@ -128,8 +139,20 @@ const ConnectWalletButton = () => {
                 )}
               </div>
               <div className="flex items-center justify-between">
+                <div>Rank:</div>
+                {!isScoresLoading ? (
+                  rank !== undefined ? (
+                    <div>{rank + 1}</div>
+                  ) : (
+                    <div>-</div>
+                  )
+                ) : (
+                  <Skeleton className="w-6 h-4 rounded-md" />
+                )}
+              </div>
+              <div className="flex items-center justify-between">
                 <div>Bonk Balance:</div>
-                {userScore === null && !isScoreLoading ? (
+                {userAccount === null && !isAccountLoading ? (
                   <Button
                     size={"xs"}
                     onClick={() => registerUser()}

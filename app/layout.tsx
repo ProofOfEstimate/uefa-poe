@@ -2,7 +2,6 @@ import "@/styles/globals.css";
 import { Inter as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
-import SideNav from "@/components/sidenav";
 import { Separator } from "@/components/ui/separator";
 import Providers from "./providers";
 import { NavBar } from "@/components/nav-bar";

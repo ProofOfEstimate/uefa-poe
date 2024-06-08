@@ -20,3 +20,11 @@ export type Poll = {
   description: string;
   bump: number;
 };
+
+export type UserAccount = {
+  userAddress: PublicKey;
+  score: number;
+  correctAnswerCount: number;
+  participationCount: number;
+  bump: number;
+};
