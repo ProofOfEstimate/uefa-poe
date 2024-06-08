@@ -30,6 +30,7 @@ import { useUpdateEstimate } from "@/hooks/mutations/useUpdateEstimate";
 import { useCollectPoints } from "@/hooks/mutations/useCollectPoints";
 import { useUserScore } from "@/hooks/queries/useUserScore";
 import MarketStats from "@/components/market-stats";
+import { useEstimateUpdatesByPoll } from "@/hooks/queries/useEstimateUpdatesByPoll";
 
 const Match = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
@@ -44,6 +45,12 @@ const Match = ({ params }: { params: { id: string } }) => {
     program,
     matchId,
     true
+  );
+
+  const { data: estimateUpdates } = useEstimateUpdatesByPoll(
+    program,
+    matchId,
+    wallet.publicKey
   );
 
   const [brushStartIndex, setBrushStartIndex] = useState<number>();
@@ -114,12 +121,6 @@ const Match = ({ params }: { params: { id: string } }) => {
     setEstimate(estimate[0]);
   };
 
-  const estimateUpdates = [
-    { name: 1342234000, estimate: 89, confidenceInterval: [87, 91] },
-    { name: 1349234000, estimate: 89, confidenceInterval: [87, 91] },
-    { name: 1349234000, estimate: 62, confidenceInterval: [52, 72] },
-    { name: 1359234000, estimate: 62, confidenceInterval: [52, 72] },
-  ];
   return (
     <main className="flex min-h-screen flex-col justify-start items-start px-4 sm:px-12 lg:px-16 py-4 sm:py-8 w-full">
       <Button
@@ -164,7 +165,7 @@ const Match = ({ params }: { params: { id: string } }) => {
           )}
           <div className="flex w-40 justify-between">
             <p className="block text-sm">Market Prediction:</p>
-            <p className="text-md">
+            <p className="text-sm">
               {poll && poll.collectiveEstimate !== null
                 ? (poll.collectiveEstimate / 10000).toFixed(0) + "%"
                 : "-"}

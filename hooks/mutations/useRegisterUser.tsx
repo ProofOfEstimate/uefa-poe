@@ -13,6 +13,7 @@ import {
 } from "@/texts/toastTitles";
 import { WalletNotConnectedError } from "@/errors/WalletNotConnectedError";
 import { sendVersionedTransaction } from "../../utils/sendVersionedTransaction";
+import { allUserAccounts } from "../queries/useAllUserAccounts";
 
 const registerUser = async (
   program: Program<Poe>,
@@ -72,6 +73,9 @@ const useRegisterUser = (
           connection.rpcEndpoint,
           wallet.publicKey?.toBase58() || "",
         ],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [allUserAccounts],
       });
       queryClient.invalidateQueries({
         queryKey: [
