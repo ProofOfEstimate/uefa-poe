@@ -30,23 +30,41 @@ import { Skeleton } from "./ui/skeleton";
 import { useUserAccount } from "@/hooks/queries/useUserAccount";
 import { useUserSolBalance } from "@/hooks/queries/useUserSolBalance";
 import { FaWallet } from "react-icons/fa";
+import { useUserBonkBalance } from "@/hooks/queries/useUserBonkBalance";
+import { useRegisterUser } from "@/hooks/mutations/useRegisterUser";
+import { useAllUserAccounts } from "@/hooks/queries/useAllUserAccounts";
 
 const ConnectWalletButton = () => {
-  const wallet = useAnchorWallet();
+  const wallet = useWallet();
+  const anchorWallet = useAnchorWallet();
   const { disconnect, connected, publicKey } = useWallet();
   const program = useAnchorProgram();
   const { connection } = useConnection();
   const { setVisible } = useWalletModal();
 
-  const { data: userScore, isLoading: isScoreLoading } = useUserAccount(
+  const { data: userAccount, isLoading: isAccountLoading } = useUserAccount(
     program,
     connection,
     publicKey
   );
 
-  const { data: userPolls } = useAllPollsByUser(program, publicKey);
+  const { data: allScores, isLoading: isScoresLoading } =
+    useAllUserAccounts(program);
+
+  const rank = allScores?.findIndex(
+    (element) =>
+      element.account.userAddress.toBase58() === wallet.publicKey?.toBase58()
+  );
+
+  console.log("Rank", rank);
+
   const { data: solBalance, isLoading: isSolBalanceLoading } =
     useUserSolBalance(connection, wallet?.publicKey ?? null);
+
+  const { data: bonkBalance, isLoading: isBonkBalanceLoading } =
+    useUserBonkBalance(program, connection, wallet?.publicKey ?? null);
+
+  const { mutate: registerUser } = useRegisterUser(program, connection, wallet);
 
   if (!connected) {
     return (
@@ -76,7 +94,7 @@ const ConnectWalletButton = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuItem className="font-normal">
-          {wallet && (
+          {anchorWallet && (
             <TooltipProvider delayDuration={200}>
               <Tooltip>
                 <TooltipTrigger>
@@ -84,21 +102,21 @@ const ConnectWalletButton = () => {
                     className="flex"
                     onClick={() => {
                       navigator.clipboard.writeText(
-                        wallet.publicKey?.toBase58() ?? ""
+                        anchorWallet.publicKey?.toBase58() ?? ""
                       );
                       toast({ variant: "default", title: "Copied!" });
                     }}
                   >
                     <div>
-                      {wallet.publicKey.toBase58().slice(0, 4) +
+                      {anchorWallet?.publicKey?.toBase58().slice(0, 4) +
                         "..." +
-                        wallet.publicKey.toBase58().slice(-4)}
+                        anchorWallet?.publicKey?.toBase58().slice(-4)}
                     </div>
                     <TbCopy className="ml-2" />
                   </div>
                 </TooltipTrigger>
                 <TooltipContent side="left">
-                  <div>{wallet.publicKey.toBase58()}</div>
+                  <div>{wallet?.publicKey?.toBase58()}</div>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -109,22 +127,50 @@ const ConnectWalletButton = () => {
         <DropdownMenuGroup>
           <div className="border rounded-md py-2 px-1 my-2">
             <div className="flex flex-col mx-2 gap-2 text-sm">
-              <div className="flex items-center gap-2">
-                Score:{" "}
-                {!isScoreLoading ? (
-                  userScore ? (
-                    userScore.score.toFixed(2)
+              <div className="flex items-center justify-between">
+                <div>Score:</div>
+                {!isAccountLoading ? (
+                  userAccount ? (
+                    <div>{userAccount.score.toFixed(2)}</div>
                   ) : (
-                    100.0
+                    <div>100.0</div>
                   )
                 ) : (
                   <Skeleton className="w-6 h-4 rounded-md" />
                 )}
               </div>
-              <div className="flex items-center gap-2">
-                Sol Balance:{" "}
+              <div className="flex items-center justify-between">
+                <div>Rank:</div>
+                {!isScoresLoading ? (
+                  rank !== undefined ? (
+                    <div>{rank + 1}</div>
+                  ) : (
+                    <div>-</div>
+                  )
+                ) : (
+                  <Skeleton className="w-6 h-4 rounded-md" />
+                )}
+              </div>
+              <div className="flex items-center justify-between">
+                <div>Bonk Balance:</div>
+                {userAccount === null && !isAccountLoading ? (
+                  <Button
+                    size={"xs"}
+                    onClick={() => registerUser()}
+                    className="flex text-center justify-center text-xs"
+                  >
+                    Mint
+                  </Button>
+                ) : !isBonkBalanceLoading ? (
+                  <div>{bonkBalance?.toFixed(2)}</div>
+                ) : (
+                  <Skeleton className="w-6 h-4 rounded-md" />
+                )}
+              </div>
+              <div className="flex items-center justify-between">
+                <div>Sol Balance:</div>
                 {!isSolBalanceLoading ? (
-                  solBalance?.toFixed(2)
+                  <div>{solBalance?.toFixed(2)}</div>
                 ) : (
                   <Skeleton className="w-6 h-4 rounded-md" />
                 )}

@@ -14,11 +14,15 @@ const getPollById = async (program: Program<Poe>, pollId: number) => {
   return await program.account.poll.fetch(pollPda);
 };
 
-const usePollById = (program: Program<Poe>, pollId: number) => {
+const usePollById = (
+  program: Program<Poe>,
+  pollId: number,
+  isVisible: boolean
+) => {
   return useQuery({
     queryKey: [pollByIdKey, pollId],
     queryFn: async () => await getPollById(program, pollId),
-    enabled: !!program,
+    enabled: !!program && isVisible,
   });
 };
 

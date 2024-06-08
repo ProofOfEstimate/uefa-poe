@@ -33,7 +33,7 @@ const TableRow: React.FC<TableRowProps> = ({
           <Image
             width={50}
             height={50}
-            className="h-[3rem] ml-[1.5rem]"
+            className="h-[3rem] ml-[1.5rem] hidden sm:block"
             src="https://github.com/malunaridev/Challenges-iCodeThis/blob/master/4-leaderboard/assets/gold-medal.png?raw=true"
             alt="gold medal"
           />
