@@ -22,36 +22,50 @@ import { useMakeEstimate } from "@/hooks/mutations/useMakeEstimate";
 import { useUserScore } from "@/hooks/queries/useUserScore";
 import { useUpdateEstimate } from "@/hooks/mutations/useUpdateEstimate";
 import { useCollectPoints } from "@/hooks/mutations/useCollectPoints";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePollById } from "@/hooks/queries/usePollById";
 import { Skeleton } from "./ui/skeleton";
 import { TbLoader2 } from "react-icons/tb";
+import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 
 export const MatchCard = ({ match }: { match: Match }) => {
   const program = useAnchorProgram();
   const { connection } = useConnection();
   const wallet = useWallet();
 
-  const matchId = Number.parseInt(match.id);
+  const ref = useRef<HTMLDivElement | null>(null);
+  const isVisible =
+    useIntersectionObserver(ref, { threshold: 0.1 }) &&
+    match.teamA !== "tbd" &&
+    match.teamB !== "tbd";
+
+  const matchId = Number.parseInt(match.id) - 1;
   const {
     data: userEstimate,
     isError: isErrorEstimate,
     error: errorEstimate,
     isLoading: isLoadingEstimate,
-  } = useUserEstimateByPoll(program, connection, wallet.publicKey, matchId);
+  } = useUserEstimateByPoll(
+    program,
+    connection,
+    wallet.publicKey,
+    matchId,
+    isVisible
+  );
 
   const {
     data: poll,
     isLoading: isLoadingPoll,
     isError: isErrorPoll,
     error: errorPoll,
-  } = usePollById(program, matchId);
+  } = usePollById(program, matchId, isVisible);
 
   const { data: userScore, isLoading: isLoadingScore } = useUserScore(
     program,
     connection,
     wallet.publicKey,
-    matchId
+    matchId,
+    isVisible
   );
 
   const { mutate: submitEstimate, isPending: isSubmitting } = useMakeEstimate(
@@ -89,7 +103,7 @@ export const MatchCard = ({ match }: { match: Match }) => {
   };
 
   return (
-    <Card className="w-full mx-4 sm:mx-0 sm:w-[25rem]">
+    <Card ref={ref} className="w-full mx-4 sm:mx-0 sm:w-[25rem]">
       <CardHeader>
         <CardDescription>{match.date}</CardDescription>
         <CardTitle className="flex gap-4">

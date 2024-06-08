@@ -38,7 +38,8 @@ const useUserScore = (
   program: Program<Poe>,
   connection: Connection,
   publicKey: PublicKey | null,
-  pollId: number | undefined
+  pollId: number | undefined,
+  isVisible: boolean
 ) => {
   return useQuery({
     queryKey: [
@@ -50,7 +51,7 @@ const useUserScore = (
     queryFn: async () =>
       await getUserScore(program, connection, publicKey, pollId),
     staleTime: Infinity,
-    enabled: !!pollId,
+    enabled: !!pollId && isVisible,
   });
 };
 

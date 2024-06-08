@@ -40,7 +40,8 @@ const useUserEstimateByPoll = (
   program: Program<Poe>,
   connection: Connection,
   publicKey: PublicKey | null,
-  pollId: number
+  pollId: number,
+  isVisible: boolean
 ) => {
   return useQuery({
     queryKey: [
@@ -52,7 +53,7 @@ const useUserEstimateByPoll = (
     queryFn: async () =>
       await getUserEstimateByPoll(program, connection, publicKey, pollId),
     staleTime: Infinity,
-    enabled: !!program,
+    enabled: !!program && isVisible,
   });
 };
 

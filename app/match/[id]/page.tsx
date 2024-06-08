@@ -31,7 +31,7 @@ const Match = ({ params }: { params: { id: string } }) => {
   const matchId = Number.parseInt(params.id);
   const match = allMatches[matchId - 1];
 
-  const { data } = usePollById(program, matchId);
+  const { data } = usePollById(program, matchId, true);
   console.log("poll by id", data);
 
   const [brushStartIndex, setBrushStartIndex] = useState<number>();
