@@ -19,8 +19,17 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePollById } from "@/hooks/queries/usePollById";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useUserEstimateByPoll } from "@/hooks/queries/useUserEstimateByPoll";
+import clsx from "clsx";
+import { TbLoader2 } from "react-icons/tb";
+import { useMakeEstimate } from "@/hooks/mutations/useMakeEstimate";
+import { useUpdateEstimate } from "@/hooks/mutations/useUpdateEstimate";
+import { useCollectPoints } from "@/hooks/mutations/useCollectPoints";
+import { useUserScore } from "@/hooks/queries/useUserScore";
+import MarketStats from "@/components/market-stats";
 
 const Match = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
@@ -28,11 +37,14 @@ const Match = ({ params }: { params: { id: string } }) => {
   const { connection } = useConnection();
   const wallet = useWallet();
 
-  const matchId = Number.parseInt(params.id);
-  const match = allMatches[matchId - 1];
+  const matchId = Number.parseInt(params.id) - 1;
+  const match = allMatches[matchId];
 
-  const { data } = usePollById(program, matchId, true);
-  console.log("poll by id", data);
+  const { data: poll, isLoading: isLoadingPoll } = usePollById(
+    program,
+    matchId,
+    true
+  );
 
   const [brushStartIndex, setBrushStartIndex] = useState<number>();
   const [brushEndIndex, setBrushEndIndex] = useState<number>();
@@ -46,6 +58,60 @@ const Match = ({ params }: { params: { id: string } }) => {
   }) => {
     setBrushStartIndex(startIndex);
     setBrushEndIndex(endIndex);
+  };
+  const {
+    data: userEstimate,
+    isError: isErrorEstimate,
+    error: errorEstimate,
+    isLoading: isLoadingEstimate,
+  } = useUserEstimateByPoll(
+    program,
+    connection,
+    wallet.publicKey,
+    matchId,
+    true
+  );
+
+  const [estimate, setEstimate] = useState(
+    userEstimate !== null && userEstimate !== undefined
+      ? (userEstimate.lowerEstimate + userEstimate.upperEstimate) / 2
+      : undefined
+  );
+
+  const { mutate: submitEstimate, isPending: isSubmitting } = useMakeEstimate(
+    program,
+    connection,
+    wallet
+  );
+  const { mutate: updateEstimate, isPending: isUpdating } = useUpdateEstimate(
+    program,
+    connection,
+    wallet
+  );
+  const { mutate: collectPoints, isPending: isCollecting } = useCollectPoints(
+    program,
+    connection,
+    wallet
+  );
+
+  const { data: userScore, isLoading: isLoadingScore } = useUserScore(
+    program,
+    connection,
+    wallet.publicKey,
+    matchId,
+    true
+  );
+
+  useEffect(() => {
+    if (userEstimate !== null && userEstimate !== undefined) {
+      setEstimate(
+        (userEstimate.lowerEstimate + userEstimate.upperEstimate) / 2
+      );
+    }
+  }, [userEstimate]);
+
+  const handleChange = (estimate: [number]) => {
+    setEstimate(estimate[0]);
   };
 
   const estimateUpdates = [
@@ -63,40 +129,159 @@ const Match = ({ params }: { params: { id: string } }) => {
       >
         <FaArrowLeftLong />
       </Button>
+      <div className="flex flex-col md:flex-row w-full gap-4">
+        <div className="basis-2/3">
+          <div className="text-lg font-medium mt-8">{match.date}</div>
+          <div className="flex flex-col items-start gap-4 mt-2">
+            <div className="flex items-center gap-4">
+              <Image
+                width={36}
+                height={27}
+                alt="Flag of team A"
+                src={
+                  match.logoA ? match.logoA : "https://via.placeholder.com/50"
+                }
+              />
+              <div className="text-xl font-bold">{match.teamA}</div>
+            </div>
+            <div className="flex items-center gap-4">
+              <Image
+                width={36}
+                height={27}
+                alt="Flag of team B"
+                src={
+                  match.logoB ? match.logoB : "https://via.placeholder.com/50"
+                }
+              />
+              <div className="text-xl font-bold">{match.teamB}</div>
+            </div>
+          </div>
 
-      <div className="text-lg font-medium mt-8">{match.date}</div>
-      <div className="flex flex-col items-start gap-4 mt-2">
-        <div className="flex items-center gap-4">
-          <Image
-            width={36}
-            height={27}
-            alt="Flag of team A"
-            src={match.logoA ? match.logoA : "https://via.placeholder.com/50"}
-          />
-          <div className="text-xl font-bold">{match.teamA}</div>
+          {poll ? (
+            <div className="text-2xl font-bold mt-8">{poll?.question}</div>
+          ) : (
+            <Skeleton />
+          )}
+          <div className="flex w-40 justify-between">
+            <p className="block text-sm">Market Prediction:</p>
+            <p className="text-md">
+              {poll && poll.collectiveEstimate !== null
+                ? (poll.collectiveEstimate / 10000).toFixed(0) + "%"
+                : "-"}
+            </p>
+          </div>
+          <div className="flex w-40 justify-between">
+            <p className="block text-sm">Your Prediction:</p>
+            <p
+              className={clsx(
+                "text-sm",
+                estimate !== userEstimate?.lowerEstimate ? "text-red-400" : ""
+              )}
+            >
+              {estimate !== undefined ? estimate + "%" : "-"}
+            </p>
+          </div>
+          <div className="flex w-5/6 sm:w-1/2 md:w-2/3 gap-4 items-center my-4">
+            <Slider
+              className="hover:cursor-pointer"
+              onValueChange={handleChange}
+              value={[estimate !== undefined ? estimate : 0]}
+              min={0}
+              max={100}
+              step={1}
+              disabled={poll?.result !== null}
+            />
+            <Button
+              variant={"secondary"}
+              disabled={poll?.result !== null}
+              size={"sm"}
+              onClick={() => {
+                if (userEstimate !== null && userEstimate !== undefined) {
+                  setEstimate(
+                    (userEstimate.lowerEstimate + userEstimate.upperEstimate) /
+                      2
+                  );
+                } else {
+                  setEstimate(undefined);
+                }
+              }}
+            >
+              Reset
+            </Button>
+          </div>
+          {isLoadingPoll ? (
+            <Skeleton className="w-40 h-9 rounded-md" />
+          ) : poll?.result !== null ? (
+            userScore === null || userScore === undefined || isLoadingScore ? (
+              <div>
+                {poll !== undefined ? (
+                  poll.result ? (
+                    <div className="text-primary font-bold">
+                      {match.teamA} won!
+                    </div>
+                  ) : (
+                    <div className="text-primary font-bold">
+                      {match.teamA} did not win!
+                    </div>
+                  )
+                ) : (
+                  ""
+                )}
+              </div>
+            ) : (
+              <Button
+                disabled={isCollecting}
+                className="w-fit"
+                onClick={() => collectPoints({ pollId: matchId })}
+              >
+                {isCollecting && (
+                  <TbLoader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                Withdraw your funds
+              </Button>
+            )
+          ) : userEstimate !== undefined && userEstimate !== null ? (
+            <Button
+              disabled={
+                isUpdating ||
+                (estimate === userEstimate.lowerEstimate &&
+                  estimate === userEstimate.upperEstimate)
+              }
+              className="w-fit"
+              onClick={() =>
+                updateEstimate({
+                  pollId: matchId,
+                  lowerEstimate: estimate,
+                  upperEstimate: estimate,
+                })
+              }
+            >
+              {isUpdating && (
+                <TbLoader2 className="mr-2 h-4 w-4 animate-spin" />
+              )}
+              Update Estimate
+            </Button>
+          ) : (
+            <Button
+              disabled={isSubmitting || estimate === undefined}
+              className="text-white font-bold rounded w-fit"
+              onClick={() =>
+                submitEstimate({
+                  pollId: matchId,
+                  lowerEstimate: estimate,
+                  upperEstimate: estimate,
+                })
+              }
+            >
+              {isSubmitting && (
+                <TbLoader2 className="mr-2 h-4 w-4 animate-spin" />
+              )}
+              Submit Estimate
+            </Button>
+          )}
         </div>
-        <div className="flex items-center gap-4">
-          <Image
-            width={36}
-            height={27}
-            alt="Flag of team B"
-            src={match.logoB ? match.logoB : "https://via.placeholder.com/50"}
-          />
-          <div className="text-xl font-bold">{match.teamB}</div>
-        </div>
+        <MarketStats matchId={matchId} />
       </div>
-
-      <div className="text-2xl font-bold mt-8">
-        Will {match.teamA} win against {match.teamB}?
-      </div>
-      <div className="text-lg font-bold mt-2">Market Prediction: 72%</div>
-      <div className="text-lg font-bold mt-2">Your Prediction: 52%</div>
-      <Slider
-        className="mt-4 w-5/6 sm:w-1/2 md:w-1/3"
-        min={0}
-        max={100}
-        step={1}
-      />
       <div className="w-full border rounded-lg p-8 mt-8">
         <ResponsiveContainer width="100%" height={400}>
           <ComposedChart data={estimateUpdates}>

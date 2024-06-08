@@ -27,6 +27,7 @@ import { usePollById } from "@/hooks/queries/usePollById";
 import { Skeleton } from "./ui/skeleton";
 import { TbLoader2 } from "react-icons/tb";
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
+import clsx from "clsx";
 
 export const MatchCard = ({ match }: { match: Match }) => {
   const program = useAnchorProgram();
@@ -130,7 +131,7 @@ export const MatchCard = ({ match }: { match: Match }) => {
         <p className="block text-md font-semibold mb-2">
           Prob. that {match.teamA} wins
         </p>
-        <div className="flex w-1/2 justify-between">
+        <div className="flex w-3/5 sm:w-1/2 justify-between">
           <p className="block text-sm">Market Prediction:</p>
           <p className="text-sm">
             {poll && poll.collectiveEstimate !== null
@@ -138,15 +139,21 @@ export const MatchCard = ({ match }: { match: Match }) => {
               : "-"}
           </p>
         </div>
-        <div className="flex w-1/2 justify-between">
+        <div className="flex w-3/5 sm:w-1/2 justify-between">
           <p className="block text-sm">Your Prediction:</p>
-          <p className="text-sm">{estimate ? estimate + "%" : "-"}</p>
+          <p
+            className={clsx(
+              "text-sm",
+              estimate !== userEstimate?.lowerEstimate ? "text-red-400" : ""
+            )}
+          >
+            {estimate !== undefined ? estimate + "%" : "-"}
+          </p>
         </div>
         <div className="flex gap-4 items-center">
           <Slider
-            onClick={(e) => e.stopPropagation()}
             onValueChange={handleChange}
-            value={[estimate ? estimate : 0]}
+            value={[estimate !== undefined ? estimate : 0]}
             max={100}
             step={1}
             className="my-4"
