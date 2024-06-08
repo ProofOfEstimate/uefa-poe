@@ -186,7 +186,7 @@ export const MatchCard = ({ match }: { match: Match }) => {
                 {isCollecting && (
                   <TbLoader2 className="mr-2 h-4 w-4 animate-spin" />
                 )}
-                Collect Points
+                Withdraw your funds
               </Button>
             )
           ) : userEstimate !== undefined && userEstimate !== null ? (

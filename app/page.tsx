@@ -37,7 +37,7 @@ export default function App() {
       <main className="flex w-full min-h-screen flex-col items-center justify-between p-4 sm:p-12">
         <div className="block sm:hidden mb-2">
           <QuickTourDialog />
-          {userAccount === null && !isScoreLoading && (
+          {wallet.publicKey && userAccount === null && !isScoreLoading && (
             <Button className="sm:hidden ml-4">Mint BONK</Button>
           )}
         </div>
@@ -65,7 +65,7 @@ export default function App() {
         <MatchDay id="semi" title="Semi Finals" matches={matchesSemiFinals} />
         <MatchDay id="final" title="Final" matches={matchesFinal} />
       </main>
-      {userAccount === null && !isScoreLoading && (
+      {wallet.publicKey && userAccount === null && !isScoreLoading && (
         <aside className="hidden sm:block right-4 pt-8 fixed">
           <Button onClick={() => registerUser()}>Mint BONK</Button>
         </aside>
