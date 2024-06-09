@@ -143,7 +143,8 @@ const Match = ({ params }: { params: { id: string } }) => {
                   match.logoA ? match.logoA : "https://via.placeholder.com/50"
                 }
               />
-              <div className="text-xl font-bold">{match.teamA}</div>
+              <div className="text-xl font-bold">{match.teamA}</div>{" "}
+              <span className="text-lg font-bold ml-8">{match.resultA}</span>
             </div>
             <div className="flex items-center gap-4">
               <Image
@@ -154,7 +155,8 @@ const Match = ({ params }: { params: { id: string } }) => {
                   match.logoB ? match.logoB : "https://via.placeholder.com/50"
                 }
               />
-              <div className="text-xl font-bold">{match.teamB}</div>
+              <div className="text-xl font-bold">{match.teamB}</div>{" "}
+              <span className="text-lg font-bold ml-8">{match.resultB}</span>
             </div>
           </div>
 
@@ -281,7 +283,25 @@ const Match = ({ params }: { params: { id: string } }) => {
             </Button>
           )}
         </div>
-        <MarketStats matchId={matchId} />
+        <MarketStats
+          matchId={matchId}
+          profitScore={
+            poll?.result !== null &&
+            userEstimate !== null &&
+            userEstimate !== undefined &&
+            userEstimate.payoutScore
+              ? ((userEstimate.payoutScore - 1) * 100).toFixed(2)
+              : ""
+          }
+          reputationScore={
+            poll?.result !== null &&
+            userEstimate !== null &&
+            userEstimate !== undefined &&
+            userEstimate.reputationScore
+              ? userEstimate.reputationScore?.toFixed(2)
+              : ""
+          }
+        />
       </div>
       <div className="w-full border rounded-lg p-8 mt-8">
         <ResponsiveContainer width="100%" height={400}>

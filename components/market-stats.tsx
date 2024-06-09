@@ -12,8 +12,17 @@ import {
 import { Skeleton } from "./ui/skeleton";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { usePollById } from "@/hooks/queries/usePollById";
+import { Separator } from "./ui/separator";
 
-const MarketStats = ({ matchId }: { matchId: number }) => {
+const MarketStats = ({
+  matchId,
+  profitScore,
+  reputationScore,
+}: {
+  matchId: number;
+  profitScore: string;
+  reputationScore: string;
+}) => {
   const program = useAnchorProgram();
   const { connection } = useConnection();
   const wallet = useWallet();
@@ -37,8 +46,15 @@ const MarketStats = ({ matchId }: { matchId: number }) => {
         ) : (
           <Skeleton className="w-8 h-5 rounded-md" />
         )}
-        <p>Your profit:</p>
-        <p>Your score:</p>
+        <Separator className="my-2" />
+        <div className="flex gap-4">
+          <p>Your profit:</p>
+          <p>{profitScore}</p>
+        </div>
+        <div className="flex gap-4">
+          <p>Your score:</p>
+          <p>{reputationScore}</p>
+        </div>
       </CardContent>
     </Card>
   );

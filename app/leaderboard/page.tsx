@@ -48,7 +48,7 @@ const Leaderboard = () => {
           {scores == undefined ? (
             <Skeleton />
           ) : (
-            <table className="w-full border-collapse table-fixed text-[#141a39] cursor-default">
+            <table className="w-full border-collapse table-fixed text-[#141a39] cursor-default mb-20">
               {scores.map((row, index) => (
                 <TableRow key={index} {...row} />
               ))}
