@@ -8,7 +8,7 @@ const allUserAccounts = "allUserAccounts";
 const getAllUserPredictions = async (program: Program<Poe>) => {
   const accounts = await program.account.user.all();
 
-  return accounts.sort((a, b) => a.account.score - b.account.score);
+  return accounts.sort((a, b) => b.account.score - a.account.score);
 };
 
 const useAllUserAccounts = (program: Program<Poe>) => {
