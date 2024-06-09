@@ -3,13 +3,21 @@
 import TableRow from "@/components/TableRow";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAllUserAccounts } from "@/hooks/queries/useAllUserAccounts";
+import { useUserAccount } from "@/hooks/queries/useUserAccount";
 import useAnchorProgram from "@/hooks/useAnchorProgram";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import React from "react";
 
 const Leaderboard = () => {
   const program = useAnchorProgram();
+  const { publicKey } = useWallet();
   const { data: userScores, isLoading: isScoresLoading } =
     useAllUserAccounts(program);
+
+  const rank = userScores?.findIndex(
+    (element) =>
+      element.account.userAddress.toBase58() === publicKey?.toBase58()
+  );
 
   const scores = userScores?.map((account, i) => {
     return {
@@ -20,6 +28,7 @@ const Leaderboard = () => {
         account.account.userAddress.toBase58().slice(-4),
       points: account.account.score.toFixed(2),
       isGold: i == 0,
+      highlight: rank === i - 2,
     };
   });
 
