@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Image from "next/image";
 import React from "react";
 
@@ -6,6 +7,7 @@ interface TableRowProps {
   name: string;
   points: string;
   isGold?: boolean;
+  highlight: boolean;
 }
 
 const TableRow: React.FC<TableRowProps> = ({
@@ -13,15 +15,18 @@ const TableRow: React.FC<TableRowProps> = ({
   name,
   points,
   isGold,
+  highlight,
 }) => {
   const hoverClasses =
-    number !== 1
-      ? "hover:bg-white hover:scale-110 hover:shadow-[0px_5px_15px_8px_#e4e7fb]"
+    highlight && number !== 1
+      ? "bg-blue-400 scale-110 shadow-[0px_5px_15px_8px_#e4e7fb]"
       : "";
 
   return (
     <tr
-      className={`transition-all duration-200 ease-in-out rounded-md ${hoverClasses}`}
+      className={clsx(
+        `transition-all duration-200 ease-in-out rounded-md ${hoverClasses}`
+      )}
     >
       <td className="h-[5rem] font-rubik text-[2.2rem] font-bold text-left">
         {number}
