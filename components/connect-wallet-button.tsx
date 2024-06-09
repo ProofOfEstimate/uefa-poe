@@ -25,7 +25,6 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 import useAnchorProgram from "@/hooks/useAnchorProgram";
-import { useAllPollsByUser } from "@/hooks/queries/useAllPollsByUser";
 import { Skeleton } from "./ui/skeleton";
 import { useUserAccount } from "@/hooks/queries/useUserAccount";
 import { useUserSolBalance } from "@/hooks/queries/useUserSolBalance";
@@ -55,8 +54,6 @@ const ConnectWalletButton = () => {
     (element) =>
       element.account.userAddress.toBase58() === wallet.publicKey?.toBase58()
   );
-
-  console.log("Rank", rank);
 
   const { data: solBalance, isLoading: isSolBalanceLoading } =
     useUserSolBalance(connection, wallet?.publicKey ?? null);

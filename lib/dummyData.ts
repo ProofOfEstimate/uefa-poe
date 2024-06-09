@@ -5,6 +5,8 @@ export type Match = {
   teamB: string;
   logoA: string;
   logoB: string;
+  resultA: string;
+  resultB: string;
 };
 
 const flagBaseUrl = "https://flagcdn.com/48x36/";
@@ -17,6 +19,8 @@ export const matchesFirstMatchDay: Match[] = [
     teamB: "Scotland",
     logoA: `${flagBaseUrl}de.png`,
     logoB: `${flagBaseUrl}gb-sct.png`,
+    resultA: "1",
+    resultB: "2",
   },
   {
     id: "2",
@@ -25,6 +29,8 @@ export const matchesFirstMatchDay: Match[] = [
     teamB: "Switzerland",
     logoA: `${flagBaseUrl}hu.png`,
     logoB: `${flagBaseUrl}ch.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "3",
@@ -33,6 +39,8 @@ export const matchesFirstMatchDay: Match[] = [
     teamB: "Croatia",
     logoA: `${flagBaseUrl}es.png`,
     logoB: `${flagBaseUrl}hr.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "4",
@@ -41,6 +49,8 @@ export const matchesFirstMatchDay: Match[] = [
     teamB: "Albania",
     logoA: `${flagBaseUrl}it.png`,
     logoB: `${flagBaseUrl}al.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "5",
@@ -49,6 +59,8 @@ export const matchesFirstMatchDay: Match[] = [
     teamB: "Netherlands",
     logoA: `${flagBaseUrl}pl.png`,
     logoB: `${flagBaseUrl}nl.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "6",
@@ -57,6 +69,8 @@ export const matchesFirstMatchDay: Match[] = [
     teamB: "Denmark",
     logoA: `${flagBaseUrl}si.png`,
     logoB: `${flagBaseUrl}dk.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "7",
@@ -65,6 +79,8 @@ export const matchesFirstMatchDay: Match[] = [
     teamB: "England",
     logoA: `${flagBaseUrl}rs.png`,
     logoB: `${flagBaseUrl}gb-eng.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "8",
@@ -73,6 +89,8 @@ export const matchesFirstMatchDay: Match[] = [
     teamB: "Ukraine",
     logoA: `${flagBaseUrl}ro.png`,
     logoB: `${flagBaseUrl}ua.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "9",
@@ -81,6 +99,8 @@ export const matchesFirstMatchDay: Match[] = [
     teamB: "Slovakia",
     logoA: `${flagBaseUrl}be.png`,
     logoB: `${flagBaseUrl}sk.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "10",
@@ -89,6 +109,8 @@ export const matchesFirstMatchDay: Match[] = [
     teamB: "France",
     logoA: `${flagBaseUrl}at.png`,
     logoB: `${flagBaseUrl}fr.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "11",
@@ -97,6 +119,8 @@ export const matchesFirstMatchDay: Match[] = [
     teamB: "Georgia",
     logoA: `${flagBaseUrl}tr.png`,
     logoB: `${flagBaseUrl}ge.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "12",
@@ -105,6 +129,8 @@ export const matchesFirstMatchDay: Match[] = [
     teamB: "Czechia",
     logoA: `${flagBaseUrl}pt.png`,
     logoB: `${flagBaseUrl}cz.png`,
+    resultA: "",
+    resultB: "",
   },
 ];
 
@@ -116,6 +142,8 @@ export const matchesSecondMatchday: Match[] = [
     teamB: "Albania",
     logoA: `${flagBaseUrl}hr.png`,
     logoB: `${flagBaseUrl}al.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "14",
@@ -124,6 +152,8 @@ export const matchesSecondMatchday: Match[] = [
     teamB: "Hungary",
     logoA: `${flagBaseUrl}de.png`,
     logoB: `${flagBaseUrl}hu.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "15",
@@ -132,6 +162,8 @@ export const matchesSecondMatchday: Match[] = [
     teamB: "Switzerland",
     logoA: `${flagBaseUrl}gb-sct.png`,
     logoB: `${flagBaseUrl}ch.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "16",
@@ -140,6 +172,8 @@ export const matchesSecondMatchday: Match[] = [
     teamB: "Serbia",
     logoA: `${flagBaseUrl}si.png`,
     logoB: `${flagBaseUrl}rs.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "17",
@@ -148,6 +182,8 @@ export const matchesSecondMatchday: Match[] = [
     teamB: "England",
     logoA: `${flagBaseUrl}dk.png`,
     logoB: `${flagBaseUrl}gb-eng.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "18",
@@ -156,6 +192,8 @@ export const matchesSecondMatchday: Match[] = [
     teamB: "Italy",
     logoA: `${flagBaseUrl}es.png`,
     logoB: `${flagBaseUrl}it.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "19",
@@ -164,6 +202,8 @@ export const matchesSecondMatchday: Match[] = [
     teamB: "Ukraine",
     logoA: `${flagBaseUrl}sk.png`,
     logoB: `${flagBaseUrl}ua.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "20",
@@ -172,6 +212,8 @@ export const matchesSecondMatchday: Match[] = [
     teamB: "Austria",
     logoA: `${flagBaseUrl}pl.png`,
     logoB: `${flagBaseUrl}at.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "21",
@@ -180,6 +222,8 @@ export const matchesSecondMatchday: Match[] = [
     teamB: "France",
     logoA: `${flagBaseUrl}nl.png`,
     logoB: `${flagBaseUrl}fr.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "22",
@@ -188,6 +232,8 @@ export const matchesSecondMatchday: Match[] = [
     teamB: "Czechia",
     logoA: `${flagBaseUrl}ge.png`,
     logoB: `${flagBaseUrl}cz.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "23",
@@ -196,6 +242,8 @@ export const matchesSecondMatchday: Match[] = [
     teamB: "Portugal",
     logoA: `${flagBaseUrl}tr.png`,
     logoB: `${flagBaseUrl}pt.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "24",
@@ -204,6 +252,8 @@ export const matchesSecondMatchday: Match[] = [
     teamB: "Romania",
     logoA: `${flagBaseUrl}be.png`,
     logoB: `${flagBaseUrl}ro.png`,
+    resultA: "",
+    resultB: "",
   },
 ];
 
@@ -215,6 +265,8 @@ export const matchesThirdMatchday: Match[] = [
     teamB: "Germany",
     logoA: `${flagBaseUrl}ch.png`,
     logoB: `${flagBaseUrl}de.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "26",
@@ -223,6 +275,8 @@ export const matchesThirdMatchday: Match[] = [
     teamB: "Hungary",
     logoA: `${flagBaseUrl}gb-sct.png`,
     logoB: `${flagBaseUrl}hu.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "27",
@@ -231,6 +285,8 @@ export const matchesThirdMatchday: Match[] = [
     teamB: "Spain",
     logoA: `${flagBaseUrl}al.png`,
     logoB: `${flagBaseUrl}es.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "28",
@@ -239,6 +295,8 @@ export const matchesThirdMatchday: Match[] = [
     teamB: "Italy",
     logoA: `${flagBaseUrl}hr.png`,
     logoB: `${flagBaseUrl}it.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "29",
@@ -247,6 +305,8 @@ export const matchesThirdMatchday: Match[] = [
     teamB: "Austria",
     logoA: `${flagBaseUrl}nl.png`,
     logoB: `${flagBaseUrl}at.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "30",
@@ -255,6 +315,8 @@ export const matchesThirdMatchday: Match[] = [
     teamB: "Poland",
     logoA: `${flagBaseUrl}fr.png`,
     logoB: `${flagBaseUrl}pl.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "31",
@@ -263,6 +325,8 @@ export const matchesThirdMatchday: Match[] = [
     teamB: "Slovenia",
     logoA: `${flagBaseUrl}gb-eng.png`,
     logoB: `${flagBaseUrl}si.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "32",
@@ -271,6 +335,8 @@ export const matchesThirdMatchday: Match[] = [
     teamB: "Serbia",
     logoA: `${flagBaseUrl}dk.png`,
     logoB: `${flagBaseUrl}rs.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "33",
@@ -279,6 +345,8 @@ export const matchesThirdMatchday: Match[] = [
     teamB: "Romania",
     logoA: `${flagBaseUrl}sk.png`,
     logoB: `${flagBaseUrl}ro.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "34",
@@ -287,6 +355,8 @@ export const matchesThirdMatchday: Match[] = [
     teamB: "Belgium",
     logoA: `${flagBaseUrl}ua.png`,
     logoB: `${flagBaseUrl}be.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "35",
@@ -295,6 +365,8 @@ export const matchesThirdMatchday: Match[] = [
     teamB: "Portugal",
     logoA: `${flagBaseUrl}ge.png`,
     logoB: `${flagBaseUrl}pt.png`,
+    resultA: "",
+    resultB: "",
   },
   {
     id: "36",
@@ -303,6 +375,8 @@ export const matchesThirdMatchday: Match[] = [
     teamB: "Türkiye",
     logoA: `${flagBaseUrl}cz.png`,
     logoB: `${flagBaseUrl}tr.png`,
+    resultA: "",
+    resultB: "",
   },
 ];
 
@@ -314,6 +388,8 @@ export const matchesRound16: Match[] = [
     teamB: "tbd",
     logoA: "",
     logoB: "",
+    resultA: "",
+    resultB: "",
   },
   {
     id: "38",
@@ -322,6 +398,8 @@ export const matchesRound16: Match[] = [
     teamB: "tbd",
     logoA: "",
     logoB: "",
+    resultA: "",
+    resultB: "",
   },
   {
     id: "39",
@@ -330,6 +408,8 @@ export const matchesRound16: Match[] = [
     teamB: "tbd",
     logoA: "",
     logoB: "",
+    resultA: "",
+    resultB: "",
   },
   {
     id: "40",
@@ -338,6 +418,8 @@ export const matchesRound16: Match[] = [
     teamB: "tbd",
     logoA: "",
     logoB: "",
+    resultA: "",
+    resultB: "",
   },
   {
     id: "41",
@@ -346,6 +428,8 @@ export const matchesRound16: Match[] = [
     teamB: "tbd",
     logoA: "",
     logoB: "",
+    resultA: "",
+    resultB: "",
   },
   {
     id: "42",
@@ -354,6 +438,8 @@ export const matchesRound16: Match[] = [
     teamB: "tbd",
     logoA: "",
     logoB: "",
+    resultA: "",
+    resultB: "",
   },
   {
     id: "43",
@@ -362,6 +448,8 @@ export const matchesRound16: Match[] = [
     teamB: "tbd",
     logoA: "",
     logoB: "",
+    resultA: "",
+    resultB: "",
   },
   {
     id: "44",
@@ -370,6 +458,8 @@ export const matchesRound16: Match[] = [
     teamB: "tbd",
     logoA: "",
     logoB: "",
+    resultA: "",
+    resultB: "",
   },
 ];
 export const matchesQuarterFinals: Match[] = [
@@ -380,6 +470,8 @@ export const matchesQuarterFinals: Match[] = [
     teamB: "tbd",
     logoA: "",
     logoB: "",
+    resultA: "",
+    resultB: "",
   },
   {
     id: "46",
@@ -388,6 +480,8 @@ export const matchesQuarterFinals: Match[] = [
     teamB: "tbd",
     logoA: "",
     logoB: "",
+    resultA: "",
+    resultB: "",
   },
   {
     id: "47",
@@ -396,6 +490,8 @@ export const matchesQuarterFinals: Match[] = [
     teamB: "tbd",
     logoA: "",
     logoB: "",
+    resultA: "",
+    resultB: "",
   },
   {
     id: "48",
@@ -404,6 +500,8 @@ export const matchesQuarterFinals: Match[] = [
     teamB: "tbd",
     logoA: "",
     logoB: "",
+    resultA: "",
+    resultB: "",
   },
 ];
 export const matchesSemiFinals: Match[] = [
@@ -414,6 +512,8 @@ export const matchesSemiFinals: Match[] = [
     teamB: "tbd",
     logoA: "",
     logoB: "",
+    resultA: "",
+    resultB: "",
   },
   {
     id: "50",
@@ -422,6 +522,8 @@ export const matchesSemiFinals: Match[] = [
     teamB: "tbd",
     logoA: "",
     logoB: "",
+    resultA: "",
+    resultB: "",
   },
 ];
 export const matchesFinal: Match[] = [
@@ -432,6 +534,8 @@ export const matchesFinal: Match[] = [
     teamB: "tbd",
     logoA: "",
     logoB: "",
+    resultA: "",
+    resultB: "",
   },
 ];
 

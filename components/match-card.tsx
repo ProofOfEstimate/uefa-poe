@@ -107,7 +107,7 @@ export const MatchCard = ({ match }: { match: Match }) => {
     <Card ref={ref} className="w-full mx-4 sm:mx-0 sm:w-[25rem]">
       <CardHeader>
         <CardDescription>{match.date}</CardDescription>
-        <CardTitle className="flex gap-4">
+        <CardTitle className="flex w-1/2 gap-4 items-center">
           <Image
             width={36}
             height={27}
@@ -115,8 +115,9 @@ export const MatchCard = ({ match }: { match: Match }) => {
             src={match.logoA ? match.logoA : "https://via.placeholder.com/50"}
           />
           <span className="text-lg font-bold">{match.teamA}</span>
+          <span className="ml-auto">{match.resultA}</span>
         </CardTitle>
-        <CardTitle className="flex gap-4 pt-4">
+        <CardTitle className="flex w-1/2 gap-4 pt-4 items-center">
           <Image
             width={36}
             height={27}
@@ -124,6 +125,7 @@ export const MatchCard = ({ match }: { match: Match }) => {
             src={match.logoB ? match.logoB : "https://via.placeholder.com/50"}
           />
           <span className="text-lg font-bold">{match.teamB}</span>
+          <span className="ml-auto">{match.resultB}</span>
         </CardTitle>
       </CardHeader>
       <CardContent>
