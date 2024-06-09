@@ -22,13 +22,7 @@ const Leaderboard = () => {
       isGold: i == 0,
     };
   });
-  // const scores = [
-  //   { number: 1, name: "Thomas", points: "258.244", isGold: true },
-  //   { number: 2, name: "Abhishek", points: "258.242" },
-  //   { number: 3, name: "Mark Anderson", points: "258.223" },
-  //   { number: 4, name: "Github", points: "258.212" },
-  //   { number: 5, name: "Johnny Suh", points: "258.208" },
-  // ];
+
   return (
     <div className="h-full w-full min-h-screen flex items-center justify-center">
       <main className="w-[40rem] h-[43rem] bg-white shadow-[0px_5px_15px_8px_#e4e7fb] flex flex-col items-center rounded-lg">
@@ -48,7 +42,7 @@ const Leaderboard = () => {
           {scores == undefined ? (
             <Skeleton />
           ) : (
-            <table className="w-full border-collapse table-fixed text-[#141a39] cursor-default">
+            <table className="w-full border-collapse table-fixed text-[#141a39] cursor-default mb-20">
               {scores.map((row, index) => (
                 <TableRow key={index} {...row} />
               ))}
