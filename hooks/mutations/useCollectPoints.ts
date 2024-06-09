@@ -17,6 +17,7 @@ import { sendVersionedTransaction } from "../../utils/sendVersionedTransaction";
 import { getAssociatedTokenAddress } from "@solana/spl-token";
 import { allPollsByUserKey } from "../queries/useAllPollsByUser";
 import { allUserAccounts } from "../queries/useAllUserAccounts";
+import { userBonkBalanceKey } from "../queries/useUserBonkBalance";
 
 const collectPoints = async (
   program: Program<Poe>,
@@ -137,7 +138,21 @@ const useCollectPoints = (
       });
       queryClient.invalidateQueries({
         queryKey: [
+          userAccountKey,
+          connection.rpcEndpoint,
+          wallet.publicKey?.toBase58() || "",
+        ],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [
           userSolBalanceKey,
+          connection.rpcEndpoint,
+          wallet.publicKey?.toBase58() || "",
+        ],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [
+          userBonkBalanceKey,
           connection.rpcEndpoint,
           wallet.publicKey?.toBase58() || "",
         ],
