@@ -1,16 +1,8 @@
 "use client";
 
 import useAnchorProgram from "@/hooks/useAnchorProgram";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Skeleton } from "./ui/skeleton";
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { usePollById } from "@/hooks/queries/usePollById";
 import { Separator } from "./ui/separator";
 
@@ -24,8 +16,6 @@ const MarketStats = ({
   reputationScore: string;
 }) => {
   const program = useAnchorProgram();
-  const { connection } = useConnection();
-  const wallet = useWallet();
 
   const { data: poll, isLoading: isLoadingPoll } = usePollById(
     program,
