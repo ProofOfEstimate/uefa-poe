@@ -50,8 +50,7 @@ const useUserScore = (
     ],
     queryFn: async () =>
       await getUserScore(program, connection, publicKey, pollId),
-    staleTime: Infinity,
-    enabled: !!pollId && isVisible,
+    enabled: isVisible,
   });
 };
 

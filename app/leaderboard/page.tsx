@@ -30,7 +30,7 @@ const Leaderboard = () => {
   //   { number: 5, name: "Johnny Suh", points: "258.208" },
   // ];
   return (
-    <div className="h-full w-full min-h-screen bg-[#fbfaff] flex items-center justify-center">
+    <div className="h-full w-full min-h-screen flex items-center justify-center">
       <main className="w-[40rem] h-[43rem] bg-white shadow-[0px_5px_15px_8px_#e4e7fb] flex flex-col items-center rounded-lg">
         <div
           id="header"
