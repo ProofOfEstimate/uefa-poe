@@ -28,7 +28,7 @@ const Leaderboard = () => {
         account.account.userAddress.toBase58().slice(-4),
       points: account.account.score.toFixed(2),
       isGold: i == 0,
-      highlight: rank === i - 2,
+      highlight: rank === i,
     };
   });
 
