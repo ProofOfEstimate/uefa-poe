@@ -18,7 +18,7 @@ export const NavBar = () => {
             className="text-sm font-medium hover:cursor-pointer"
             prefetch={false}
           >
-            <p className="text-lg">Soccer 2024</p>
+            <p className="text-lg">UEFA 2024</p>
             <span className="sm:flex hidden items-center gap-1 text-xs">
               powered by
               <Image width={20} height={20} alt="Logo" src={"/Poe.png"} />
