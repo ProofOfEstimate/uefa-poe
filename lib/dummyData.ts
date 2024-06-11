@@ -19,8 +19,8 @@ export const matchesFirstMatchDay: Match[] = [
     teamB: "Scotland",
     logoA: `${flagBaseUrl}de.png`,
     logoB: `${flagBaseUrl}gb-sct.png`,
-    resultA: "1",
-    resultB: "2",
+    resultA: "",
+    resultB: "",
   },
   {
     id: "2",

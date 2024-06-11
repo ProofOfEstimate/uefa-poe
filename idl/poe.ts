@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/poe.json`.
  */
 export type Poe = {
-  address: "8zc7ckn91DQ2hjLDH59NTLqx9iScEsL7GB1cn2hCYkCv";
+  address: "ACyH6Avm4uYen8WWyTU4chExQqpF4gCHy5MmtqtpWomk";
   metadata: {
     name: "poe";
     version: "0.1.0";
