@@ -38,7 +38,7 @@ export default function App() {
         <div className="block sm:hidden mb-2">
           <QuickTourDialog />
           {wallet.publicKey && userAccount === null && !isScoreLoading && (
-            <Button className="sm:hidden ml-4">Mint BONK</Button>
+            <Button onClick={() => registerUser()}>Mint BONK</Button>
           )}
         </div>
         <MatchDay
