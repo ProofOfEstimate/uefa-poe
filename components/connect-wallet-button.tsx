@@ -32,6 +32,7 @@ import { FaWallet } from "react-icons/fa";
 import { useUserBonkBalance } from "@/hooks/queries/useUserBonkBalance";
 import { useRegisterUser } from "@/hooks/mutations/useRegisterUser";
 import { useAllUserAccounts } from "@/hooks/queries/useAllUserAccounts";
+import { useAirdropSol } from "@/hooks/mutations/useAirdropSol";
 
 const ConnectWalletButton = () => {
   const wallet = useWallet();
@@ -61,7 +62,13 @@ const ConnectWalletButton = () => {
   const { data: bonkBalance, isLoading: isBonkBalanceLoading } =
     useUserBonkBalance(program, connection, wallet?.publicKey ?? null);
 
-  const { mutate: registerUser } = useRegisterUser(program, connection, wallet);
+  const { mutate: registerUser, isPending: isMintingBonkPending } =
+    useRegisterUser(program, connection, wallet);
+
+  const { mutate: airdropSol, isPending: isAirdropPending } = useAirdropSol(
+    connection,
+    wallet
+  );
 
   if (!connected) {
     return (
@@ -153,6 +160,7 @@ const ConnectWalletButton = () => {
                 {userAccount === null && !isAccountLoading ? (
                   <Button
                     size={"xs"}
+                    disabled={isMintingBonkPending}
                     onClick={() => registerUser()}
                     className="flex text-center justify-center text-xs"
                   >
@@ -166,8 +174,19 @@ const ConnectWalletButton = () => {
               </div>
               <div className="flex items-center justify-between">
                 <div>Sol Balance:</div>
-                {!isSolBalanceLoading ? (
-                  <div>{solBalance?.toFixed(2)}</div>
+                {solBalance !== undefined ? (
+                  solBalance > 0.01 ? (
+                    <div>{solBalance?.toFixed(2)}</div>
+                  ) : (
+                    <Button
+                      size={"xs"}
+                      disabled={isAirdropPending}
+                      onClick={() => airdropSol()}
+                      className="flex text-center justify-center text-xs"
+                    >
+                      Mint Sol
+                    </Button>
+                  )
                 ) : (
                   <Skeleton className="w-6 h-4 rounded-md" />
                 )}

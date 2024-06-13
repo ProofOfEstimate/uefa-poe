@@ -16,12 +16,12 @@ import {
   matchesFinal,
 } from "@/lib/dummyData";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import React from "react";
 
 export default function App() {
   const program = useAnchorProgram();
   const { connection } = useConnection();
   const wallet = useWallet();
+
   const { data: userAccount, isLoading: isScoreLoading } = useUserAccount(
     program,
     connection,
