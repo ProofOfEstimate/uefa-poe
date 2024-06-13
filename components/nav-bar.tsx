@@ -2,6 +2,7 @@ import Link from "next/link";
 import ConnectWalletButton from "./connect-wallet-button";
 import Image from "next/image";
 import QuickTourDialog from "./quick-tour-dialog";
+import { DarkModeToggle } from "./dark-mode-toggle";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 export const NavBar = () => {
@@ -34,6 +35,7 @@ export const NavBar = () => {
           <div className="flex items-center md:space-x-4">
             <ConnectWalletButton />
           </div>
+          <DarkModeToggle />
         </div>
       </div>
     </header>

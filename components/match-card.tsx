@@ -155,7 +155,7 @@ export const MatchCard = ({ match }: { match: Match }) => {
         <div className="flex gap-4 items-center">
           <Slider
             onValueChange={handleChange}
-            value={[estimate !== undefined ? estimate : 0]}
+            value={[estimate !== undefined ? estimate : 50]}
             max={100}
             step={1}
             className="my-4"
@@ -236,7 +236,7 @@ export const MatchCard = ({ match }: { match: Match }) => {
           ) : (
             <Button
               disabled={isSubmitting || estimate === undefined}
-              className="text-white font-bold rounded w-full "
+              className="font-bold rounded w-full "
               onClick={() =>
                 submitEstimate({
                   pollId: matchId,
