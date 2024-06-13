@@ -15,7 +15,7 @@ const useAllUserAccounts = (program: Program<Poe>) => {
   return useQuery({
     queryKey: [allUserAccounts],
     queryFn: async () => await getAllUserPredictions(program),
-    staleTime: Infinity,
+    // staleTime: Infinity,
     enabled: !!program,
   });
 };
