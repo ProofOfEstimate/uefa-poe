@@ -159,12 +159,12 @@ const Match = ({ params }: { params: { id: string } }) => {
               <span className="text-lg font-bold ml-8">{match.resultB}</span>
             </div>
           </div>
-
-          {poll ? (
+          <div className="text-2xl font-bold mt-8">{`Will ${match.teamA} win against ${match.teamB}?`}</div>
+          {/* {poll ? (
             <div className="text-2xl font-bold mt-8">{poll?.question}</div>
           ) : (
             <Skeleton />
-          )}
+          )} */}
           <div className="flex w-40 justify-between">
             <p className="block text-sm">Market Prediction:</p>
             <p className="text-sm">
