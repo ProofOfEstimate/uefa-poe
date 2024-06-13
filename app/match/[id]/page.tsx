@@ -267,7 +267,7 @@ const Match = ({ params }: { params: { id: string } }) => {
           ) : (
             <Button
               disabled={isSubmitting || estimate === undefined}
-              className="text-white font-bold rounded w-fit"
+              className="font-bold rounded w-fit"
               onClick={() =>
                 submitEstimate({
                   pollId: matchId,
