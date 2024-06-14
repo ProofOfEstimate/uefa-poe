@@ -31,6 +31,7 @@ import { useCollectPoints } from "@/hooks/mutations/useCollectPoints";
 import { useUserScore } from "@/hooks/queries/useUserScore";
 import MarketStats from "@/components/market-stats";
 import { useEstimateUpdatesByPoll } from "@/hooks/queries/useEstimateUpdatesByPoll";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 const Match = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
@@ -265,22 +266,27 @@ const Match = ({ params }: { params: { id: string } }) => {
               Update Estimate
             </Button>
           ) : (
-            <Button
-              disabled={isSubmitting || estimate === undefined}
-              className="font-bold rounded w-fit"
-              onClick={() =>
-                submitEstimate({
-                  pollId: matchId,
-                  lowerEstimate: estimate,
-                  upperEstimate: estimate,
-                })
-              }
-            >
-              {isSubmitting && (
-                <TbLoader2 className="mr-2 h-4 w-4 animate-spin" />
-              )}
-              Submit Estimate
-            </Button>
+            <div className="flex gap-4">
+              <Button
+                disabled={isSubmitting || estimate === undefined}
+                className="font-bold rounded w-fit"
+                onClick={() =>
+                  submitEstimate({
+                    pollId: matchId,
+                    lowerEstimate: estimate,
+                    upperEstimate: estimate,
+                  })
+                }
+              >
+                {isSubmitting && (
+                  <TbLoader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                Submit Estimate
+              </Button>
+              <Avatar>
+                <AvatarImage src={"/bonk_poe.png"} />
+              </Avatar>
+            </div>
           )}
         </div>
         <MarketStats

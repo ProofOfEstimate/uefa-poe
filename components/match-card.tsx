@@ -28,6 +28,7 @@ import { Skeleton } from "./ui/skeleton";
 import { TbLoader2 } from "react-icons/tb";
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import clsx from "clsx";
+import { Badge } from "./ui/badge";
 
 export const MatchCard = ({ match }: { match: Match }) => {
   const program = useAnchorProgram();
@@ -103,10 +104,22 @@ export const MatchCard = ({ match }: { match: Match }) => {
     setEstimate(estimate[0]);
   };
 
+  const isLive = poll?.hasStarted && poll?.result == null;
+
   return (
     <Card ref={ref} className="w-full mx-4 sm:mx-0 sm:w-[25rem]">
       <CardHeader>
-        <CardDescription>{match.date}</CardDescription>
+        <CardDescription>
+          <div className="flex justify-between">
+            {match.date}
+            {isLive && (
+              <Badge>
+                <span className="block w-[6px] h-[6px] bg-red-500 rounded-full drop-shadow-[0_0px_8px_#F7931A10)] animate-ping mr-2"></span>
+                Live
+              </Badge>
+            )}
+          </div>
+        </CardDescription>
         <CardTitle className="flex w-1/2 gap-4 items-center">
           <Image
             width={36}
