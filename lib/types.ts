@@ -6,6 +6,7 @@ export type Poll = {
   open: boolean;
   id: number;
   category: number;
+  hasStarted: boolean;
   startSlot: number;
   endSlot: number;
   endTime: number | null;
