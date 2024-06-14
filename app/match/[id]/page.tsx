@@ -318,11 +318,14 @@ const Match = ({ params }: { params: { id: string } }) => {
             />
             <YAxis />
             <Tooltip
+              contentStyle={{
+                backgroundColor: "hsl(var(--primary))",
+              }}
+              itemStyle={{ color: "hsl(var(--primary-foreground))" }}
+              labelStyle={{ color: "hsl(var(--primary-foreground))" }}
               formatter={(value, name, prop) => {
                 switch (name) {
                   case "confidenceInterval":
-                    prop.color = "hsl(0 0% 100%)";
-
                     return [undefined, undefined];
                   case "estimate":
                     const interval =
