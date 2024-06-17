@@ -3,9 +3,8 @@
 import TableRow from "@/components/TableRow";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAllUserAccounts } from "@/hooks/queries/useAllUserAccounts";
-import { useUserAccount } from "@/hooks/queries/useUserAccount";
 import useAnchorProgram from "@/hooks/useAnchorProgram";
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { useWallet } from "@solana/wallet-adapter-react";
 import React from "react";
 
 const Leaderboard = () => {
@@ -34,7 +33,7 @@ const Leaderboard = () => {
 
   return (
     <div className="h-full w-full min-h-screen flex items-center justify-center">
-      <main className="w-[40rem] h-[43rem] bg-white shadow-[0px_5px_15px_8px_#e4e7fb] flex flex-col items-center rounded-lg">
+      <main className="w-[40rem] bg-white shadow-[0px_5px_15px_8px_#e4e7fb] flex flex-col items-center rounded-lg">
         <div
           id="header"
           className="w-full flex items-center justify-between p-10"

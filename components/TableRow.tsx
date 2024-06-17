@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
 
@@ -19,13 +19,14 @@ const TableRow: React.FC<TableRowProps> = ({
 }) => {
   const hoverClasses =
     highlight && number !== 1
-      ? "bg-blue-400 scale-110 shadow-[0px_5px_15px_8px_#e4e7fb]"
+      ? "sm:scale-110 shadow-[0px_5px_15px_8px_#e4e7fb] !bg-yellow-300 "
       : "";
 
   return (
     <tr
-      className={clsx(
-        `transition-all duration-200 ease-in-out rounded-md ${hoverClasses}`
+      className={cn(
+        "bg-white odd:bg-gray-100 transition-all duration-200 ease-in-out rounded-md",
+        hoverClasses
       )}
     >
       <td className="h-[5rem] font-rubik text-[2.2rem] font-bold text-left">
