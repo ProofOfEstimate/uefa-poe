@@ -34,8 +34,7 @@ export const sendVersionedTransaction = async (
   // Send transaction and await for signature
   let signature: TransactionSignature = await wallet.sendTransaction(
     transaction,
-    connection,
-    { skipPreflight: true }
+    connection
   );
 
   console.log("Signature", signature);
