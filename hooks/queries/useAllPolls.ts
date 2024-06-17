@@ -14,6 +14,7 @@ const getAllPolls = async (program: Program<Poe>) => {
         poll.account.creator.toBase58() ===
         "3aSqvNz5XuBkudHZLZZSfio3Hd6nxEEzUWSwvggWWDR1"
     )
+    .sort((a, b) => a.account.id - b.account.id)
     .map((poll) => poll.account) as unknown as Poll[];
 };
 

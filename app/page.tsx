@@ -1,9 +1,12 @@
 "use client";
+import { MatchCard } from "@/components/match-card";
 import { MatchDay } from "@/components/match-day";
 import QuickTourDialog from "@/components/quick-tour-dialog";
 import SideNav from "@/components/sidenav";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useRegisterUser } from "@/hooks/mutations/useRegisterUser";
+import { useAllPolls } from "@/hooks/queries/useAllPolls";
 import { useUserAccount } from "@/hooks/queries/useUserAccount";
 import useAnchorProgram from "@/hooks/useAnchorProgram";
 import {
@@ -14,8 +17,12 @@ import {
   matchesQuarterFinals,
   matchesSemiFinals,
   matchesFinal,
+  allMatches,
 } from "@/lib/dummyData";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { useEffect, useState } from "react";
+import { FaChevronUp } from "react-icons/fa6";
 
 export default function App() {
   const program = useAnchorProgram();
@@ -27,6 +34,30 @@ export default function App() {
     connection,
     wallet.publicKey
   );
+
+  const { data: allPolls, isLoading: isAllPollsLoading } = useAllPolls(program);
+
+  const comingPolls = allPolls?.filter((p) => {
+    return p.result == null;
+  });
+
+  const nextMarketIndex = allPolls?.filter((p) => {
+    return p.result !== null;
+  }).length;
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsVisible(window.scrollY > 1000);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const { mutate: registerUser } = useRegisterUser(program, connection, wallet);
   return (
@@ -43,6 +74,15 @@ export default function App() {
             </Button>
           )}
         </div>
+
+        <div className="text-4xl font-bold mb-4">Next Match</div>
+
+        {nextMarketIndex ? (
+          <MatchCard match={allMatches[nextMarketIndex]} />
+        ) : (
+          <Skeleton className="h-[350px] w-[400px] rounded-xl" />
+        )}
+        <div className="mb-8"></div>
         <MatchDay
           id="matchday1"
           title="Matchday 1"
@@ -67,6 +107,23 @@ export default function App() {
         <MatchDay id="semi" title="Semi Finals" matches={matchesSemiFinals} />
         <MatchDay id="final" title="Final" matches={matchesFinal} />
       </main>
+      {isVisible && (
+        <aside className="right-8 bottom-16 fixed">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => {
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            }}
+          >
+            <FaChevronUp />
+          </Button>
+        </aside>
+      )}
+
       {wallet.publicKey && userAccount === null && !isScoreLoading && (
         <aside className="hidden sm:block right-4 pt-8 fixed">
           <Button onClick={() => registerUser()}>Mint BONK</Button>

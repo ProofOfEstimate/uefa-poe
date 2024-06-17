@@ -135,7 +135,7 @@ const Match = ({ params }: { params: { id: string } }) => {
         <div className="basis-2/3">
           <div className="text-lg font-medium mt-8">{match.date}</div>
           <div className="flex flex-col items-start gap-4 mt-2">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 w-60">
               <Image
                 width={36}
                 height={27}
@@ -144,10 +144,10 @@ const Match = ({ params }: { params: { id: string } }) => {
                   match.logoA ? match.logoA : "https://via.placeholder.com/50"
                 }
               />
-              <div className="text-xl font-bold">{match.teamA}</div>{" "}
-              <span className="text-lg font-bold ml-8">{match.resultA}</span>
+              <div className="text-xl font-bold">{match.teamA}</div>
+              <span className="text-lg font-bold ml-auto">{match.resultA}</span>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 w-60">
               <Image
                 width={36}
                 height={27}
@@ -156,8 +156,8 @@ const Match = ({ params }: { params: { id: string } }) => {
                   match.logoB ? match.logoB : "https://via.placeholder.com/50"
                 }
               />
-              <div className="text-xl font-bold">{match.teamB}</div>{" "}
-              <span className="text-lg font-bold ml-8">{match.resultB}</span>
+              <div className="text-xl font-bold">{match.teamB}</div>
+              <span className="text-lg font-bold ml-auto">{match.resultB}</span>
             </div>
           </div>
           <div className="text-2xl font-bold mt-8">{`Will ${match.teamA} win against ${match.teamB}?`}</div>
