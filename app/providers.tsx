@@ -24,7 +24,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     <ContextProvider>
       <ThemeProvider
         attribute="class"
-        defaultTheme="light"
+        defaultTheme="system"
         enableSystem
         disableTransitionOnChange
       >
