@@ -168,7 +168,7 @@ const Match = ({ params }: { params: { id: string } }) => {
           )} */}
           <div className="flex w-40 justify-between">
             <p className="block text-sm">Market Prediction:</p>
-            <p className="text-sm">
+            <p className="text-sm font-bold">
               {poll && poll.collectiveEstimate !== null
                 ? (poll.collectiveEstimate / 10000).toFixed(0) + "%"
                 : "-"}
@@ -178,8 +178,10 @@ const Match = ({ params }: { params: { id: string } }) => {
             <p className="block text-sm">Your Prediction:</p>
             <p
               className={clsx(
-                "text-sm",
-                estimate !== userEstimate?.lowerEstimate ? "text-red-400" : ""
+                "text-sm font-bold",
+                estimate !== userEstimate?.lowerEstimate
+                  ? "dark:text-yellow-300"
+                  : ""
               )}
             >
               {estimate !== undefined ? estimate + "%" : "-"}
@@ -189,7 +191,7 @@ const Match = ({ params }: { params: { id: string } }) => {
             <Slider
               className="hover:cursor-pointer"
               onValueChange={handleChange}
-              value={[estimate !== undefined ? estimate : 0]}
+              value={[estimate !== undefined ? estimate : 50]}
               min={0}
               max={100}
               step={1}

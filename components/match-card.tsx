@@ -148,7 +148,7 @@ export const MatchCard = ({ match }: { match: Match }) => {
         </p>
         <div className="flex w-3/5 sm:w-1/2 justify-between">
           <p className="block text-sm">Market Prediction:</p>
-          <p className="text-sm">
+          <p className="text-sm font-bold">
             {poll && poll.collectiveEstimate !== null
               ? (poll.collectiveEstimate / 10000).toFixed(0) + "%"
               : "-"}
@@ -158,8 +158,10 @@ export const MatchCard = ({ match }: { match: Match }) => {
           <p className="block text-sm">Your Prediction:</p>
           <p
             className={clsx(
-              "text-sm",
-              estimate !== userEstimate?.lowerEstimate ? "text-red-400" : ""
+              "text-sm font-bold",
+              estimate !== userEstimate?.lowerEstimate
+                ? "dark:text-yellow-300"
+                : ""
             )}
           >
             {estimate !== undefined ? estimate + "%" : "-"}
