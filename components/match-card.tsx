@@ -263,7 +263,7 @@ export const MatchCard = ({ match }: { match: Match }) => {
               {isSubmitting && (
                 <TbLoader2 className="mr-2 h-4 w-4 animate-spin" />
               )}
-              Submit Estimate
+              Bet 100 BONK
             </Button>
           )}
 

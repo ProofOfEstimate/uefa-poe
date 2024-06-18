@@ -283,7 +283,7 @@ const Match = ({ params }: { params: { id: string } }) => {
                 {isSubmitting && (
                   <TbLoader2 className="mr-2 h-4 w-4 animate-spin" />
                 )}
-                Submit Estimate
+                Bet 100 BONK
               </Button>
               <Avatar>
                 <AvatarImage src={"/bonk_poe.png"} />
