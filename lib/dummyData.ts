@@ -99,8 +99,8 @@ export const matchesFirstMatchDay: Match[] = [
     teamB: "Slovakia",
     logoA: `${flagBaseUrl}be.png`,
     logoB: `${flagBaseUrl}sk.png`,
-    resultA: "",
-    resultB: "",
+    resultA: "0",
+    resultB: "1",
   },
   {
     id: "10",
@@ -109,8 +109,8 @@ export const matchesFirstMatchDay: Match[] = [
     teamB: "France",
     logoA: `${flagBaseUrl}at.png`,
     logoB: `${flagBaseUrl}fr.png`,
-    resultA: "",
-    resultB: "",
+    resultA: "0",
+    resultB: "1",
   },
   {
     id: "11",

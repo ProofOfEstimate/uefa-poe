@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import Providers from "./providers";
 import { NavBar } from "@/components/nav-bar";
+import { Footer } from "@/components/footer";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
           <Separator />
           {children}
         </Providers>
+        <Footer />
       </body>
     </html>
   );
