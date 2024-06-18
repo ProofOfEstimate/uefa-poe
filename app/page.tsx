@@ -5,6 +5,7 @@ import QuickTourDialog from "@/components/quick-tour-dialog";
 import SideNav from "@/components/sidenav";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRegisterUser } from "@/hooks/mutations/useRegisterUser";
 import { useAllPolls } from "@/hooks/queries/useAllPolls";
 import { useUserAccount } from "@/hooks/queries/useUserAccount";
@@ -37,13 +38,14 @@ export default function App() {
 
   const { data: allPolls, isLoading: isAllPollsLoading } = useAllPolls(program);
 
-  const comingPolls = allPolls?.filter((p) => {
-    return p.result == null;
-  });
-
   const nextMarketIndex = allPolls?.filter((p) => {
     return p.result !== null;
   }).length;
+
+  const comingMatches = allMatches.filter((match) => {
+    const index = nextMarketIndex ?? 0;
+    return Number.parseInt(match.id) - 1 > index;
+  });
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -82,30 +84,22 @@ export default function App() {
         ) : (
           <Skeleton className="h-[350px] w-[400px] rounded-xl" />
         )}
-        <div className="mb-8"></div>
-        <MatchDay
-          id="matchday1"
-          title="Matchday 1"
-          matches={matchesFirstMatchDay}
-        />
-        <MatchDay
-          id="matchday2"
-          title="Matchday 2"
-          matches={matchesSecondMatchday}
-        />
-        <MatchDay
-          id="matchday3"
-          title="Matchday 3"
-          matches={matchesThirdMatchday}
-        />
-        <MatchDay id="round16" title="Round of 16" matches={matchesRound16} />
-        <MatchDay
-          id="quarter"
-          title="Quarter Finals"
-          matches={matchesQuarterFinals}
-        />
-        <MatchDay id="semi" title="Semi Finals" matches={matchesSemiFinals} />
-        <MatchDay id="final" title="Final" matches={matchesFinal} />
+        <Tabs defaultValue="coming" className="w-full mx-auto my-8 text-center">
+          <TabsList>
+            <TabsTrigger value="all">All Matches</TabsTrigger>
+            <TabsTrigger value="coming">Coming Matches</TabsTrigger>
+          </TabsList>
+          <TabsContent value="all">
+            <AllMatches />
+          </TabsContent>
+          <TabsContent value="coming">
+            <MatchDay
+              id="coming"
+              title="Coming Matches"
+              matches={comingMatches}
+            />
+          </TabsContent>
+        </Tabs>
       </main>
       {isVisible && (
         <aside className="right-8 bottom-16 fixed">
@@ -132,3 +126,33 @@ export default function App() {
     </div>
   );
 }
+
+const AllMatches = () => {
+  return (
+    <>
+      <MatchDay
+        id="matchday1"
+        title="Matchday 1"
+        matches={matchesFirstMatchDay}
+      />
+      <MatchDay
+        id="matchday2"
+        title="Matchday 2"
+        matches={matchesSecondMatchday}
+      />
+      <MatchDay
+        id="matchday3"
+        title="Matchday 3"
+        matches={matchesThirdMatchday}
+      />
+      <MatchDay id="round16" title="Round of 16" matches={matchesRound16} />
+      <MatchDay
+        id="quarter"
+        title="Quarter Finals"
+        matches={matchesQuarterFinals}
+      />
+      <MatchDay id="semi" title="Semi Finals" matches={matchesSemiFinals} />
+      <MatchDay id="final" title="Final" matches={matchesFinal} />
+    </>
+  );
+};
