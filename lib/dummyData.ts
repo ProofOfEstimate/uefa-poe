@@ -142,8 +142,8 @@ export const matchesSecondMatchday: Match[] = [
     teamB: "Albania",
     logoA: `${flagBaseUrl}hr.png`,
     logoB: `${flagBaseUrl}al.png`,
-    resultA: "",
-    resultB: "",
+    resultA: "2",
+    resultB: "2",
   },
   {
     id: "14",
@@ -152,8 +152,8 @@ export const matchesSecondMatchday: Match[] = [
     teamB: "Hungary",
     logoA: `${flagBaseUrl}de.png`,
     logoB: `${flagBaseUrl}hu.png`,
-    resultA: "",
-    resultB: "",
+    resultA: "2",
+    resultB: "0",
   },
   {
     id: "15",
@@ -162,8 +162,8 @@ export const matchesSecondMatchday: Match[] = [
     teamB: "Switzerland",
     logoA: `${flagBaseUrl}gb-sct.png`,
     logoB: `${flagBaseUrl}ch.png`,
-    resultA: "",
-    resultB: "",
+    resultA: "1",
+    resultB: "1",
   },
   {
     id: "16",
