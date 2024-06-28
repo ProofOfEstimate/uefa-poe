@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRegisterUser } from "@/hooks/mutations/useRegisterUser";
 import { useAllPolls } from "@/hooks/queries/useAllPolls";
 import { useUserAccount } from "@/hooks/queries/useUserAccount";
+import { useTabsStore } from "@/hooks/states/useTabStore";
 import useAnchorProgram from "@/hooks/useAnchorProgram";
 import {
   matchesFirstMatchDay,
@@ -49,6 +50,9 @@ export default function App() {
 
   const [isVisible, setIsVisible] = useState(false);
 
+  const tab = useTabsStore((state) => state.tab);
+  const setTab = useTabsStore((state) => state.setTab);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsVisible(window.scrollY > 1000);
@@ -84,7 +88,11 @@ export default function App() {
         ) : (
           <Skeleton className="h-[350px] w-[400px] rounded-xl" />
         )}
-        <Tabs defaultValue="coming" className="w-full mx-auto my-8 text-center">
+        <Tabs
+          value={tab}
+          onValueChange={setTab}
+          className="w-full mx-auto my-8 text-center"
+        >
           <TabsList>
             <TabsTrigger value="all">All Matches</TabsTrigger>
             <TabsTrigger value="coming">Coming Matches</TabsTrigger>
