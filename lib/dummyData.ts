@@ -534,8 +534,8 @@ export const matchesFinal: Match[] = [
     teamB: "England",
     logoA: `${flagBaseUrl}es.png`,
     logoB: `${flagBaseUrl}gb-eng.png`,
-    resultA: "",
-    resultB: "",
+    resultA: "2",
+    resultB: "1",
   },
 ];
 

@@ -39,14 +39,14 @@ export default function App() {
 
   const { data: allPolls, isLoading: isAllPollsLoading } = useAllPolls(program);
 
-  const nextMarketIndex = allPolls?.filter((p) => {
-    return p.result !== null;
-  }).length;
+  // const nextMarketIndex = allPolls?.filter((p) => {
+  //   return p.result !== null;
+  // }).length;
 
-  const comingMatches = allMatches.filter((match) => {
-    const index = nextMarketIndex ?? 0;
-    return Number.parseInt(match.id) - 1 > index;
-  });
+  // const comingMatches = allMatches.filter((match) => {
+  //   const index = nextMarketIndex ?? 0;
+  //   return Number.parseInt(match.id) - 1 > index;
+  // });
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -81,14 +81,15 @@ export default function App() {
           )}
         </div>
 
-        <div className="text-4xl font-bold mb-4">Next Match</div>
+        {/* <div className="text-4xl font-bold mb-4">Next Match</div> */}
 
-        {nextMarketIndex ? (
+        {/* {nextMarketIndex ? (
           <MatchCard match={allMatches[nextMarketIndex]} />
         ) : (
           <Skeleton className="h-[350px] w-[400px] rounded-xl" />
-        )}
-        <Tabs
+        )} */}
+        <AllMatches />
+        {/* <Tabs
           value={tab}
           onValueChange={setTab}
           className="w-full mx-auto my-8 text-center"
@@ -107,7 +108,7 @@ export default function App() {
               matches={comingMatches}
             />
           </TabsContent>
-        </Tabs>
+        </Tabs> */}
       </main>
       {isVisible && (
         <aside className="right-8 bottom-16 fixed">
